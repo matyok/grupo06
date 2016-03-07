@@ -1,0 +1,25 @@
+Logbook - Grupo 06
+
+06/03/2016
+
+- Setup
+	- Fazer ssh no cluster (todos)
+	- Colocar dados pessoais no integrantes.txt (todos)
+	- Clonar repositório ém sua máquina local (todos)
+	- Clonar repositório no cluster (Pedro Grijo)
+
+- PostgresSQL
+	- Configurar (Matheus Figueiredo)
+
+- Tomcat
+	- Configurar (Matheus Figueiredo)
+
+- TPCw
+	- Implementar e tornar ativo (Matheus Figueiredo)
+
+- Emulador de navegadores
+	- Rodar o RBE e ver se está tudo certo (Pedro Grijo)
+
+- Criar Relatório (Pedro Grijo)
+
+- Criar o logbook (João G. Fidelis)
