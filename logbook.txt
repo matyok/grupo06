@@ -23,3 +23,5 @@ Logbook - Grupo 06
 - Criar Relatório (Pedro Grijo)
 
 - Criar o logbook (João G. Fidelis)
+
+- Criar Manual (Gabriel Bueno)
