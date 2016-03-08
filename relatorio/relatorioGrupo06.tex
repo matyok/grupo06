@@ -1,0 +1,97 @@
+% Exemplo de relatório técnico do IC
+% Criado por P.J.de Rezende antes do Alvorecer da História.
+% Modificado em 97-06-15 e 01-02-26 por J.Stolfi.
+% Last edited on 2003-06-07 21:12:18 by stolfi
+% modificado em 1o. de outubro de 2008
+% modificado em 2012-09-25 para ajustar o pacote UTF8. Contribuicao de
+%   Rogerio Cardoso
+
+\documentclass[11pt,twoside]{article}
+\usepackage{techrep-ic}
+
+%%% SE USAR INGLÊS, TROQUE AS ATIVAÇÕES DOS DOIS COMANDOS A SEGUIR:
+\usepackage[brazil]{babel}
+%% \usepackage[english]{babel}
+
+%%% SE USAR CODIFICAÇÃO LATIN1, TROQUE AS ATIVAÇÕES DOS DOIS COMANDOS A
+%%% SEGUIR:
+%% \usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+
+%%% PÁGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 
+% Número do relatório
+\TRNumber{??}
+
+% DATA DE PUBLICAÇÃO (PARA A CAPA)
+%
+\TRYear{16}  % Dois dígitos apenas
+\TRMonth{03} % Numérico, 01-12
+
+% LISTA DE AUTORES PARA CAPA (sem afiliações).
+\TRAuthor{G. Oliveira \and J. Fid{\'e}lis \and M. Figueiredo \and P. Grij{\'o}}
+
+% TÍTULO PARA A CAPA (use \\ para forçar quebras de linha).
+\TRTitle{MC437 - Grupo06}
+
+\TRMakeCover
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% O que segue é apenas uma sugestão - sinta-se à vontade para
+% usar seu formato predileto, desde que as margens tenham pelo
+% menos 25mm nos quatro lados, e o tamanho do fonte seja pelo menos
+% 11pt. Certifique-se também de que o título e lista de autores
+% estão reproduzidos na íntegra na página 1, a primeira depois da
+% página de capa.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Nomes de autores ABREVIADOS e titulo ABREVIADO,
+% para cabeçalhos em cada página.
+%
+\markboth{Bueno, Fid{\'e}lis, Figueiredo e Grij{\'o}}{MC437 - Grupo06}
+\pagestyle{myheadings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TÍTULO e NOMES DOS AUTORES, completos, para a página 1.
+% Use "\\" para quebrar linhas, "\and" para separar autores.
+%
+\title{MC437 - Grupo06}
+
+\author{Gabriel Bueno de Oliveira\thanks{} \and
+Jo{\~a}o Guilherme Daros Fid{\'e}lis\thanks{} \and
+Matheus Yokoyama Figueiredo\thanks{} \and Pedro Rodrigues Grij{\'o}\thanks{Minha m{\~a}e, meu pai, meu papagaio e a Xuxa.}}
+
+\date{}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{abstract} 
+  Este trabalho é um relatório...
+
+  Com base nessas pesquisas, determinamos que ...
+\end{abstract}
+
+\section{Introdução}
+
+ ...
+
+\begin{thebibliography}{99}
+
+\bibitem{AHU} A. V. Aho, J. E. Hopcroft and J.  D.  Ullman, {\it The
+Design and Analysis of Computer Algorithms,} Addison-Wesley (1901).
+
+\bibitem{KNU} D. E. Knuth and L. Lamport, {\it A structural analysis
+of the role of gnus and gnats in the post-modernistic, crypto-existential 
+Weltanschauung of neo-liberal Tibeto-Vietnamese leaf blower operators 
+as manifest in the sexual symbology of the Los Angeles Phone Directory}.
+Journal of Gnu Technology, {\bf 23} (6), 12--87
+(March 1996).
+
+\end{thebibliography}
+
+\end{document}
