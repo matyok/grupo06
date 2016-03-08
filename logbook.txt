@@ -20,8 +20,10 @@ Logbook - Grupo 06
 - Emulador de navegadores
 	- Rodar o RBE e ver se está tudo certo (Pedro Grijo)
 
-- Criar Relatório (Pedro Grijo)
-
 - Criar o logbook (João G. Fidelis)
 
 - Criar Manual (Gabriel Bueno)
+
+08/03/2016
+
+- Criar Relatório (Pedro Grijo)
