@@ -10,10 +10,10 @@ Logbook - Grupo 06
 
 - PostgresSQL
 	- Configurar (Matheus Figueiredo)
-
+	
 - Tomcat
 	- Configurar (Matheus Figueiredo)
-
+	- 
 - TPCw
 	- Implementar e tornar ativo (Matheus Figueiredo)
 
@@ -27,3 +27,18 @@ Logbook - Grupo 06
 08/03/2016
 
 - Criar Relatório (Pedro Grijo)
+
+16/03/2016
+
+- PostgresSQL
+	- Configurado e populado(Gabriel Bueno)
+
+-Tomcat
+	- Instalado e rodando corretamente
+	- Falta integrar com o banco de dados
+
+-TPC-W
+	- Instalado e rodando corretamente
+
+-RBE
+	- Começando a instalação
