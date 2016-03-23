@@ -42,3 +42,7 @@ Logbook - Grupo 06
 
 -RBE
 	- Começando a instalação
+18/03/2016
+
+-Tomcat
+	-Instalado e rodando corretamente com o banco de dados
