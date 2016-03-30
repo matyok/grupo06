@@ -26,7 +26,7 @@ Logbook - Grupo 06
 
 2016/03/08
 
-- Criar Relatório (Pedro Grijo
+- Criar Relatório (Pedro Grijo)
 
 2016/03/16
 
@@ -48,7 +48,12 @@ Logbook - Grupo 06
 	-Instalado e rodando corretamente com o banco de dados
 
 2016/03/30
-
-	-Geração de gráficos
+	
+	-Criado scripts(Lucas Morais)
+	-Geração de gráficos(Lucas Morais e Matheus Figueiredo)
 	-Atualização do Relatório(todos)
 	-Atualizaçao do Manual(todos)
+	-Resolução de problemas com GIT(Pedro Grijo)
+		-Problema com arquivos grandes
+		-Revert de 2 commits para consertar os erros fatais de push para arquivos com mais de 100MB
+
