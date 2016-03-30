@@ -1,0 +1,93 @@
+rbe.EBTPCW1Factory
+512 operations completed in 40 seconds
+Average WIPS: 12.8 stddev: 3.90728759726
+Average WIRT: 1.35135135135 stddev: 9.5664405545
+1116 operations completed in 40 seconds
+Average WIPS: 27.9 stddev: 7.82098296703
+Average WIRT: 2.26500566251 stddev: 27.9058352706
+1626 operations completed in 40 seconds
+Average WIPS: 40.65 stddev: 10.9953829338
+Average WIRT: 3.40909090909 stddev: 22.1775821415
+2103 operations completed in 40 seconds
+Average WIPS: 52.575 stddev: 13.3479504795
+Average WIRT: 1.82890855457 stddev: 9.56553237835
+2619 operations completed in 40 seconds
+Average WIPS: 65.475 stddev: 15.6544880783
+Average WIRT: 9.80531813865 stddev: 28.9257090762
+3235 operations completed in 40 seconds
+Average WIPS: 80.875 stddev: 21.230668622
+Average WIRT: 13.2684824903 stddev: 38.6798694924
+3702 operations completed in 40 seconds
+Average WIPS: 92.55 stddev: 21.9014824541
+Average WIRT: 14.4482173175 stddev: 39.5610619356
+4326 operations completed in 40 seconds
+Average WIPS: 108.15 stddev: 21.7096033025
+Average WIRT: 5.84683357879 stddev: 20.6504430309
+4918 operations completed in 40 seconds
+Average WIPS: 122.95 stddev: 29.3001015944
+Average WIRT: 4.68188814777 stddev: 16.4392225971
+5338 operations completed in 40 seconds
+Average WIPS: 133.45 stddev: 34.7736353125
+Average WIRT: 11.3258374327 stddev: 36.7064551219
+rbe.EBTPCW2Factory
+509 operations completed in 40 seconds
+Average WIPS: 12.725 stddev: 4.45102043317
+Average WIRT: 1.34146341463 stddev: 15.8023879735
+1077 operations completed in 40 seconds
+Average WIPS: 26.925 stddev: 7.5188055257
+Average WIRT: 0.989522700815 stddev: 11.9226508068
+1602 operations completed in 40 seconds
+Average WIPS: 40.05 stddev: 10.256308669
+Average WIRT: 2.7195027195 stddev: 11.9611200385
+2198 operations completed in 40 seconds
+Average WIPS: 54.95 stddev: 14.0688083059
+Average WIRT: 4.43037974684 stddev: 15.6861068171
+2676 operations completed in 40 seconds
+Average WIPS: 66.9 stddev: 15.8068197481
+Average WIRT: 9.71698113208 stddev: 30.1417173208
+3215 operations completed in 40 seconds
+Average WIPS: 80.375 stddev: 18.3690519121
+Average WIRT: 14.4919168591 stddev: 41.3041704408
+3747 operations completed in 40 seconds
+Average WIPS: 93.675 stddev: 23.9413938273
+Average WIRT: 13.1264520412 stddev: 36.8175810422
+4390 operations completed in 40 seconds
+Average WIPS: 109.75 stddev: 27.7124926687
+Average WIRT: 11.3764838892 stddev: 33.3855757922
+4875 operations completed in 40 seconds
+Average WIPS: 121.875 stddev: 23.3715973589
+Average WIRT: 10.5154105154 stddev: 32.6094347829
+5328 operations completed in 40 seconds
+Average WIPS: 133.2 stddev: 30.2287667984
+Average WIRT: 17.8664765978 stddev: 50.9888321882
+rbe.EBTPCW3Factory
+576 operations completed in 40 seconds
+Average WIPS: 14.4 stddev: 4.69821707593
+Average WIRT: 1.50537634409 stddev: 8.68510417225
+1064 operations completed in 40 seconds
+Average WIPS: 26.6 stddev: 9.40338995572
+Average WIRT: 0.974770642202 stddev: 9.09962016897
+1618 operations completed in 40 seconds
+Average WIPS: 40.45 stddev: 10.5590506358
+Average WIRT: 4.44444444444 stddev: 24.608672737
+2140 operations completed in 40 seconds
+Average WIPS: 53.5 stddev: 12.4459370821
+Average WIRT: 9.03110047847 stddev: 26.4361735958
+2727 operations completed in 40 seconds
+Average WIPS: 68.175 stddev: 17.7646724283
+Average WIRT: 10.8655616943 stddev: 30.6408870539
+3245 operations completed in 40 seconds
+Average WIPS: 81.125 stddev: 19.6865895272
+Average WIRT: 15.3619197482 stddev: 39.1292009507
+3806 operations completed in 40 seconds
+Average WIPS: 95.15 stddev: 24.8330025416
+Average WIRT: 10.1274093434 stddev: 28.3009326315
+4210 operations completed in 40 seconds
+Average WIPS: 105.25 stddev: 22.9058117643
+Average WIRT: 18.5820895522 stddev: 46.5779975411
+4776 operations completed in 40 seconds
+Average WIPS: 119.4 stddev: 28.0718921742
+Average WIRT: 10.8062418726 stddev: 30.285945108
+5344 operations completed in 40 seconds
+Average WIPS: 133.6 stddev: 30.6887720897
+Average WIRT: 25.9667852906 stddev: 68.60712959
