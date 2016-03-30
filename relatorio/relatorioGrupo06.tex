@@ -1,5 +1,5 @@
-% Exemplo de relat√≥rio t√©cnico do IC
-% Criado por P.J.de Rezende antes do Alvorecer da Hist√≥ria.
+% Exemplo de relatÛrio tÈcnico do IC
+% Criado por P.J.de Rezende antes do Alvorecer da HistÛria.
 % Modificado em 97-06-15 e 01-02-26 por J.Stolfi.
 % Last edited on 2003-06-07 21:12:18 by stolfi
 % modificado em 1o. de outubro de 2008
@@ -9,52 +9,52 @@
 \documentclass[11pt,twoside]{article}
 \usepackage{techrep-ic}
 
-%%% SE USAR INGL√äS, TROQUE AS ATIVA√á√ïES DOS DOIS COMANDOS A SEGUIR:
+%%% SE USAR INGL S, TROQUE AS ATIVA«’ES DOS DOIS COMANDOS A SEGUIR:
 \usepackage[brazil]{babel}
 %% \usepackage[english]{babel}
 
-%%% SE USAR CODIFICA√á√ÉO LATIN1, TROQUE AS ATIVA√á√ïES DOS DOIS COMANDOS A
+%%% SE USAR CODIFICA«√O LATIN1, TROQUE AS ATIVA«’ES DOS DOIS COMANDOS A
 %%% SEGUIR:
 %% \usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
 
 \begin{document}
 
-%%% P√ÅGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% P¡GINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% N√∫mero do relat√≥rio
+% N˙mero do relatÛrio
 \TRNumber{01}
 
-% DATA DE PUBLICA√á√ÉO (PARA A CAPA)
+% DATA DE PUBLICA«√O (PARA A CAPA)
 %
-\TRYear{16}  % Dois d√≠gitos apenas
-\TRMonth{03} % Num√©rico, 01-12
+\TRYear{16}  % Dois dÌgitos apenas
+\TRMonth{03} % NumÈrico, 01-12
 
-% LISTA DE AUTORES PARA CAPA (sem afilia√ß√µes).
+% LISTA DE AUTORES PARA CAPA (sem afiliaÁıes).
 \TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Matheus Figueiredo \and Pedro Grij{\'o}}
 
-% T√çTULO PARA A CAPA (use \\ para for√ßar quebras de linha).
+% TÕTULO PARA A CAPA (use \\ para forÁar quebras de linha).
 \TRTitle{MC437 - Grupo06 - Relat{\'o}rio 1}
 
 \TRMakeCover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% O que segue √© apenas uma sugest√£o - sinta-se √† vontade para
+% O que segue È apenas uma sugest„o - sinta-se ‡ vontade para
 % usar seu formato predileto, desde que as margens tenham pelo
 % menos 25mm nos quatro lados, e o tamanho do fonte seja pelo menos
-% 11pt. Certifique-se tamb√©m de que o t√≠tulo e lista de autores
-% est√£o reproduzidos na √≠ntegra na p√°gina 1, a primeira depois da
-% p√°gina de capa.
+% 11pt. Certifique-se tambÈm de que o tÌtulo e lista de autores
+% est„o reproduzidos na Ìntegra na p·gina 1, a primeira depois da
+% p·gina de capa.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nomes de autores ABREVIADOS e titulo ABREVIADO,
-% para cabe√ßalhos em cada p√°gina.
+% para cabeÁalhos em cada p·gina.
 %
 \markboth{Bueno, Fid{\'e}lis, Figueiredo, Grij{\'o}, Morais}{MC437 - Grupo06}
 \pagestyle{myheadings}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% T√çTULO e NOMES DOS AUTORES, completos, para a p√°gina 1.
+% TÕTULO e NOMES DOS AUTORES, completos, para a p·gina 1.
 % Use "\\" para quebrar linhas, "\and" para separar autores.
 %
 \title{MC437 - Grupo06}
@@ -69,12 +69,12 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract} 
-  Este trabalho √© um relat√≥rio da primeira parte do projeto da displina, que consistiu em preparar a m√°quina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site com dados gerados aleatoriamente. Tamb√©m foi instalado na m√°quina o aplicativo TPC-W que √© um benchmark de transa√ß√µes web. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. Os clientes operam como se fossem navegadores web.
+  Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site com dados gerados aleatoriamente. Tamb\'em foi instalado na m\'aquina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que \'e uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
-  Com base nessas pesquisas, determinamos que ...
+  O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho \'e gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes s\~ao de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
 \end{abstract}
 
-\section{Introdu√ß√£o}
+\section{Introdu\c{c}\~ao}
 
  ...
 
