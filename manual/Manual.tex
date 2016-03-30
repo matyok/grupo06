@@ -33,6 +33,126 @@
 	\end{titlepage}
 
 \newpage
-\section{Instalação}
-as
+\section{Setup do Cluster}
+    \subsection{Acesso}
+    O acesso ao cluster pode ser feito de fora e de dentro do IC (Instituto de Computação - UNICAMP).
+        \subsubsection{Interno ao IC}
+        Para acceso interno ao ic, basta acessar por ssh o endereço cbn6.lab.ic.unicamp.br. No linux, isso pode ser feito através de:
+        \begin{verbatim}
+        $ ssh cbn6.lab.ic.unicamp.br
+        \end{verbatim}
+        Após a conexão ser feita, insira sua senha.
+        \subsubsection{Externo ao IC}
+        Para o acesso externo, é necessário fazer uma conexão de duas fases ou usar um tunnel por uma máquina do ic. Para acesso remoto a uma máquina do ic, no linux, use:
+        \begin{verbatim}
+        $ ssh -l raXXXXXX ssh.students.ic.unicamp.br
+        \end{verbatim}
+        Após a conexão ser feita, insira sua senha. Após feita a credencial, prossiga do mesmo modo como se tivesse acessando de dentro do IC.
+        
+\section{Instalação e Configuração}
+    \subsection{PostgreSQL}
+    \subsubsection{Instalação}
+    A versão utilizada do PostgreSQL é a versão 9.5, que pode ser obtida seguindo os seguintes comandos:
+    \begin{verbatim}
+    $ sudo su
+    # cat /etc/apt/sources.list.d/postgresql.list
+    # deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+    # sudo apt-get install wget ca-certificates
+    # wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+    # sudo apt-get update
+    # sudo apt-get upgrade
+    # sudo apt-get install postgresql-9.5
+    
+    \end{verbatim}
+    \subsubsection{Configuração}
+    Para configurar o acesso ao banco de dados deve-se alterar o arquivo de configuração principal. Nele são definidos toda a configuração de acesso ao banco de dados e os diretórios de dados que são respectivamente: 
+    \begin{verbatim}
+hba_file = '/etc/postgresql/9.5/main/pg_hba.conf'
+data_directory = '/var/lib/postgresql/9.5/main'
+    \end{verbatim}
+    
+    O arquivo pg\_hba.conf define regras para a conexão ao banco. Por padrão, são só permitidas conexões locais: o usuário administrador do banco (postgres, quando instalado por gerenciador de pacotes) tem acesso via socket e sem senha. os demais usuários, via interface local e com senha:
+    local   all             postgres                                peer
+
+host    all             all             127.0.0.1/32            md5
+
+Para criar o primeiro usuário siga os seguintes comandos:
+    \begin{verbatim}
+        $ sudo su
+        # su postgres
+        # psql
+        =# CREATE ROLE <usr_name> with superuser createdb createrole login;
+        =# ALTER ROLE <usr_name> PASSWORD ‘<password>’;
+    \end{verbatim}
+    
+    \subsubsection{Carregando o Dump}
+    Para carregar o ddump no banco deve-se criar o banco de dados (tpcw) e um usuário tpcw-user.
+    \begin{verbatim}
+        $ pg_restore -d tpcw tpcw-database-dump.tar
+    \end{verbatim}
+    
+    
+    \subsection{Tomcat}
+        \subsubsection{Instalação}
+        Para instalar o Tomcat (usaremos o tomcat7), precisamos instalar o pacote do tomcat e suas dependencias. Para isso, no linux, podemos usar o apt-get:
+        \begin{verbatim}
+        $ sudo apt-get install tomcat7
+        
+        \end{verbatim}
+        A instalação irá criar um usuário tomcat7 dentro de um grupo, tomcat7. Os arquivos estão em \$CATALINA\_BASE, que na instalação do Ubuntu é /var/lib/tomcat7.
+
+        Para teste, acesse em uma máquina do IC o cbn6.lab.ic.unicamp.br:8080.
+        
+        \subsubsection{Integração com o PostgreSQL}
+        Para integração com o PostgreSQL é necessário fazer o download do .jar do PostgreSQL JDBC para ser adicionado a pasta \$CATALINA\_BASE/lib. Após fazer o download, modifique os seguintes arquivos com o conteúdo indicado:
+
+        \begin{itemize}
+            \item \$CATALINA\_BASE/conf/context.xml: http://www.ggte.unicamp.br/eam/pluginfile.php/188108/mod\_wiki/attachments/132/tomcat7-context.xml
+            \item \$CATALINA\_BASE/conf/server.xml: http://www.ggte.unicamp.br/eam/pluginfile.php/188108/mod\_wiki/attachments/132/tomcat7-server.xml. Para este, modifique os campos de username, password e possivelmente url.
+        \end{itemize}
+        
+        Após essas configurações, reinicie o tomcat:
+        
+        \begin{verbatim}
+        # invoke-rc.d tomcat7 restart
+        
+        \end{verbatim}
+         
+        \subsection{TPC-W}
+        
+        As aplicações implantadas no Tomcat são configuradas em \$CATALINA\_BASE/webapps. Para ter permissão de criar aplicações nesta pasta, o usuário tem que ser do grupo tomcat7, para fazer isso, no linux:
+        
+        \begin{verbatim}
+            # adduser [usuário_comum] tomcat7
+        \end{verbatim}
+        Para instalação default do TPC-W no tomcat7, crie a seguinte árvore:
+        \begin{verbatim}
+        
+            $CATALINA_BASE/webapps
+            
+                tpcw
+            
+                     Images
+            
+                     WEB-INF
+            
+                        classes
+            
+                        web.xml
+            
+                        
+        \end{verbatim}
+        Na pasta tpcw, rode os seguintes comandos:
+        \begin{verbatim}
+            $ sudo cp /nfs/servlet/Images.tar.gz .
+            $ sudo tar -xzf Images.tar.gz
+            $ sudo cp /nfs/servlet/tpcw-servlets.tar.gz
+            $ sudo tar -xzf tpcw-servlets.tar.gz
+            $ cd tpcw-servlets.tar.gz
+            $ sudo make
+        \end{verbatim}
+        No fim, copie todas as *.class geradas para a pasta WEB-INF/classes e copie o web.xml para pasta WEB-INF/. Reinicie o Tomcat.
+       
+
+    
 \end{document}
