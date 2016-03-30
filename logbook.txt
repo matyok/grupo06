@@ -1,6 +1,6 @@
 Logbook - Grupo 06
 
-06/03/2016
+2016/03/06
 
 - Setup
 	- Fazer ssh no cluster (todos)
@@ -10,10 +10,10 @@ Logbook - Grupo 06
 
 - PostgresSQL
 	- Configurar (Matheus Figueiredo)
-
+	
 - Tomcat
 	- Configurar (Matheus Figueiredo)
-
+	- 
 - TPCw
 	- Implementar e tornar ativo (Matheus Figueiredo)
 
@@ -24,6 +24,31 @@ Logbook - Grupo 06
 
 - Criar Manual (Gabriel Bueno)
 
-08/03/2016
+2016/03/08
 
-- Criar Relatório (Pedro Grijo)
+- Criar Relatório (Pedro Grijo
+
+2016/03/16
+
+- PostgresSQL
+	- Configurado e populado(Gabriel Bueno)
+
+-Tomcat
+	- Instalado e rodando corretamente
+	- Falta integrar com o banco de dados
+
+-TPC-W
+	- Instalado e rodando corretamente
+
+-RBE
+	- Começando a instalação
+2016/03/18
+
+-Tomcat
+	-Instalado e rodando corretamente com o banco de dados
+
+2016/03/30
+
+	-Geração de gráficos
+	-Atualização do Relatório(todos)
+	-Atualizaçao do Manual(todos)

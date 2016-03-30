@@ -31,12 +31,13 @@
 \TRMonth{03} % Numérico, 01-12
 
 % LISTA DE AUTORES PARA CAPA (sem afiliações).
-\TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Matheus Figueiredo \and Pedro Grij{\'o}}
+\TRAuthor{G. Oliveira \and J. Fid{\'e}lis \and M. Figueiredo \and P. Grij{\'o} \and L. Morais}
 
 % TÍTULO PARA A CAPA (use \\ para forçar quebras de linha).
-\TRTitle{MC437 - Grupo06 - Relat{\'o}rio 1}
+\TRTitle{MC437 - Grupo06}
 
 \TRMakeCover
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % O que segue é apenas uma sugestão - sinta-se à vontade para
 % usar seu formato predileto, desde que as margens tenham pelo
@@ -59,9 +60,10 @@
 %
 \title{MC437 - Grupo06}
 
-\author{Gabriel Bueno de Oliveira \and
-Jo{\~a}o Guilherme Daros Fid{\'e}lis \and
-Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
+\author{Gabriel Bueno de Oliveira\thanks{} \and
+Jo{\~a}o Guilherme Daros Fid{\'e}lis\thanks{} \and
+Matheus Yokoyama Figueiredo\thanks{} \and Pedro Rodrigues Grij{\'o}\thanks{Minha m{\~a}e, meu pai, meu papagaio e a Xuxa.} \and Lucas Morais}
+
 \date{}
 
 \maketitle
@@ -69,12 +71,14 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract} 
-  Este trabalho é um relatório da primeira parte do projeto da displina, que consistiu em preparar a máquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site com dados gerados aleatoriamente. Também foi instalado na máquina o aplicativo TPC-W que é um benchmark de transações web. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. Os clientes operam como se fossem navegadores web.
+  Este trabalho \'e um relatório da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site com dados gerados aleatoriamente. Também foi instalado na máquina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que é uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
+
+  O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho é gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes são de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
 
   Com base nessas pesquisas, determinamos que ...
 \end{abstract}
 
-\section{Introdução}
+\section{Introducao}
 
  ...
 
