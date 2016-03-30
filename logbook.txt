@@ -46,3 +46,9 @@ Logbook - Grupo 06
 
 -Tomcat
 	-Instalado e rodando corretamente com o banco de dados
+
+30/03/2016
+
+	-Geração de gráficos
+	-Atualização do Relatório(todos)
+	-Atualizaçao do Manual(todos)
