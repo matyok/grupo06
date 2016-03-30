@@ -8,6 +8,7 @@
 
 \documentclass[11pt,twoside]{article}
 \usepackage{techrep-ic}
+\usepackage{indentfirst}
 
 %%% SE USAR INGL S, TROQUE AS ATIVA«’ES DOS DOIS COMANDOS A SEGUIR:
 \usepackage[brazil]{babel}
@@ -31,7 +32,7 @@
 \TRMonth{03} % NumÈrico, 01-12
 
 % LISTA DE AUTORES PARA CAPA (sem afiliaÁıes).
-\TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Matheus Figueiredo \and Pedro Grij{\'o}}
+\TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Lucas Morais \and Matheus Figueiredo \and Pedro Grij{\'o}}
 
 % TÕTULO PARA A CAPA (use \\ para forÁar quebras de linha).
 \TRTitle{MC437 - Grupo06 - Relat{\'o}rio 1}
@@ -61,6 +62,7 @@
 
 \author{Gabriel Bueno de Oliveira \and
 Jo{\~a}o Guilherme Daros Fid{\'e}lis \and
+Lucas Henrique Morais \and
 Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 \date{}
 
@@ -74,12 +76,22 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 \end{abstract}
 
 \section{Introdu√ß√£o}
-	Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site com dados gerados aleatoriamente. Tamb√©m foi instalado na m√°quina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que √© uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
+\setlength{\parindent}{4ex}
+Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site de compras com dados gerados aleatoriamente. Tamb√©m foi instalado na m√°quina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que √© uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
   O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho √© gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes s√£o de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
 
   	O objetivo deste primeiro relat√≥rio foi s√≥ colocar o sistema para funcionar e testar sua integridade e disponibilidade para que possamos melhorar estes resultados durante o semestre.
 
 \section{Condi√ß√µes Experimentais}
+\setlength{\parindent}{4ex}
 
+	 Nesta se\c{c}\~ao ser\~ao descritas as configura\c{c}\~oes de hardware e software utilizadas nos experimentos, os par\^ametros dos RBEs e como foi feita a sincroniza\c{c}\~ao das m\'aquinas.
+	
+	Os experimentos foram feitos no cluster disponilizado pelo Instituto de Computa\c{c}\~ao(IC). A m\'aquina utilizada possui a seguinte configura\c{c}\~ao: sistema operacional Ubuntu 14.04, CPU Intel(R) Core(TM)2 Quad CPU 2.66GHz e mem\'oria RAM de 4GB e 1333 MHz.
+
+	Utilizamos o servidor web Apache Tomcat vers\~ao 7 e PostgreSQL vers\~ao 9.5.1.
+
+%postgress 9.5.1
+%tomcat 7
 \end{document}
