@@ -102,28 +102,28 @@ Para analisar a disponibilidade de nosso servidor, fizemos um script que executa
 A seguir, veremos os gr\'aficos gerados pela execu\c{c}\~ao do RBE no cluster.
 
 \begin{center}
-\includegraphics[width=15cm, height=10cm]{plot_1_browsing}
+\includegraphics[width=15cm, height=10cm]{images/plot_1_browsing}
 Figura 1: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Browsing
 \end{center}
 
 Podemos ver claramente que o WIPS cresce linearmente com o n\'umero de usu\'arios at\'e o valor de 2500 usu\'arios. Ap\'os este valor, ele cai para quase a metade e come\c{c}a a decrescer praticamente linearmente. Podemos dizer que esse \'e o ponto de satura\c{c}\~ao do servidor.
 
 \begin{center}
-\includegraphics[width=15cm, height=10cm]{plot_2_shopping}
+\includegraphics[width=15cm, height=10cm]{images/plot_2_shopping}
 Figura 2: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Shopping
 \end{center}
 
 \'E poss\'ivel ver que h\'a um crescimento linear do n\'umero m\'edio de WIPS at\'e o ponto de satura\c{c}\~ao que gira em torno de 1100 usu\'arios no modo Shopping. O pico de WIPS tamb\'em se mostrou menor que o pico de WIPS no modo Browsing, o que mostra o fardo que s\~ao as opera\c{c}\~oes de escritas ao servidor. Ap\'os atingir o ponto de satura\c{c}\~ao, n\~ao houve um grande decrescimo os valores ficaram em m\'edia apenas 20\% menores que o pico.
 
 \begin{center}
-\includegraphics[width=15cm, height=10cm]{plot_3_ordering}
+\includegraphics[width=15cm, height=10cm]{images/plot_3_ordering}
 Figura 3: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Ordering
 \end{center}
 
 Infelizmente, houve um erro na realiza\c{c}\~ao do teste e o gr\'afico n\~ao foi desenhado por completo, parando com n\'umero de usu\'arios em 800, o que n\~ao nos possibilitou achar seu ponto de satura\c{c}\~ao, mas vemos que o crescimento do WIPS m\'edio no come\c{c}o \'e linear com o n\'umero de usu\'arios.
 
 \begin{center}
-\includegraphics[width=15cm, height=10cm]{plot_all}
+\includegraphics[width=15cm, height=10cm]{images/plot_all}
 Figura 4: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE nos tr\^es perfis juntos
 \end{center}
 
