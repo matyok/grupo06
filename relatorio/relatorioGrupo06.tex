@@ -18,6 +18,7 @@
 %%% SEGUIR:
 %% \usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -71,8 +72,8 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{abstract} 
-
-  Escrever abstract
+\setlength{\parindent}{4ex}
+  Utilizamos o benchmark TPC-W, que modela uma livraria online, atrav\'es de um ambiente controlado, para simular atividades num servidor WEB. Em conjunto com o simulador RBE, que gera tr\^es diferentes perfis de carga (Shopping, Ordering e Browsing), pudemos checar o desempenho do servidor instalado num cluster no IC, ao vermos o n\'umero de WIPS (WEB Interactions per Second) gerados por diferentes cargas. O relat\'orio refere-se a primeira parte do projeto da disciplina de MC437 (Projeto de Sistemas de Informa\c{c}\~ao) e tem como objetivo fazer uma avalia\c{c}\~ao inicial do desempenho de nosso servidor para podermos melhor\'a-lo durante o semestre.
 \end{abstract}
 
 \section{Introdução}
@@ -92,6 +93,42 @@ Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que c
 
 	Utilizamos o servidor web Apache Tomcat vers\~ao 7 e PostgreSQL vers\~ao 9.5.1.
 
-%postgress 9.5.1
-%tomcat 7
+\section{Metodologia de Pesquisa}
+\setlength{\parindent}{4ex}
+Para analisar a disponibilidade de nosso servidor, fizemos um script que executa o comando do RBE diversas vezes variando o n\'umero de usu\'arios para cada perfil. Por exemplo, Fizemos o RBE simular 100 usu\'arios com o perfil Shopping e medimos o WIPS m\'edio. Variamos o n\'umero de usu\'ario de 100 a 4000 incrementando esse n\'umero em 100 a cada vez. Tamb\'em, utilizamos os valores de \textit{Ramp-up Time} em 5s, \textit{Measurement Interval} em 30s, \textit{Ramp-down Time} em 5s e o resto dos par\^ametros no valor padr\~ao.
+
+\section{An\'alise e Resultados}
+\setlength{\parindent}{4ex}
+A seguir, veremos os gr\'aficos gerados pela execu\c{c}\~ao do RBE no cluster.
+
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{plot_1_browsing}
+Figura 1: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Browsing
+\end{center}
+
+Podemos ver claramente que o WIPS cresce linearmente com o n\'umero de usu\'arios at\'e o valor de 2500 usu\'arios. Ap\'os este valor, ele cai para quase a metade e come\c{c}a a decrescer praticamente linearmente. Podemos dizer que esse \'e o ponto de satura\c{c}\~ao do servidor.
+
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{plot_2_shopping}
+Figura 2: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Shopping
+\end{center}
+
+\'E poss\'ivel ver que h\'a um crescimento linear do n\'umero m\'edio de WIPS at\'e o ponto de satura\c{c}\~ao que gira em torno de 1100 usu\'arios no modo Shopping. O pico de WIPS tamb\'em se mostrou menor que o pico de WIPS no modo Browsing, o que mostra o fardo que s\~ao as opera\c{c}\~oes de escritas ao servidor. Ap\'os atingir o ponto de satura\c{c}\~ao, n\~ao houve um grande decrescimo os valores ficaram em m\'edia apenas 20\% menores que o pico.
+
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{plot_3_ordering}
+Figura 3: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Ordering
+\end{center}
+
+Infelizmente, houve um erro na realiza\c{c}\~ao do teste e o gr\'afico n\~ao foi desenhado por completo, parando com n\'umero de usu\'arios em 800, o que n\~ao nos possibilitou achar seu ponto de satura\c{c}\~ao, mas vemos que o crescimento do WIPS m\'edio no come\c{c}o \'e linear com o n\'umero de usu\'arios.
+
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{plot_all}
+Figura 4: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE nos tr\^es perfis juntos
+\end{center}
+
+Vemos que o WIPS m\'edio cresce na mesma propor\c{c}\~ao para todos os perfis, at\'e chegar ao ponto de satura\c{c}\~ao, onde os comportamentos variam.
+
+\section{Conclus\~ao}
+Conclu\'imos que com esses dados obtidos n\'os j\'a podemos trabalhar ao longo do semestre para obtermos melhores resultados dos que apresentados nesses gr\'aficos, seja, por exemplo, aumentando o pico de WIPS m\'edio ou aumentando o valor do ponto de satura\c{c}\~ao.
 \end{document}
