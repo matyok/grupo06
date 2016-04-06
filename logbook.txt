@@ -57,3 +57,9 @@ Logbook - Grupo 06
 		-Problema com arquivos grandes
 		-Revert de 2 commits para consertar os erros fatais de push para arquivos com mais de 100MB
 
+2016/04/06
+
+	- Duplicando o banco de dados localmente(Gabriel e João)
+	- Estudando como injetar falhas(Matheus e Lucas)
+	- Scripts para o banco de dados(Matheus e Lucas)
+	- Criar banco de dados "dummy" e tentar fazer acesso remoto(Pedro)
