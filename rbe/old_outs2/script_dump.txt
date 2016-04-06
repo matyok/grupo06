@@ -1,0 +1,138 @@
+rbe.EBTPCW1Factory
+592 operations completed in 45 seconds
+Average WIPS: 13.1555555556 stddev: 6.61163325382
+Average WIRT: 456.41025641 stddev: 1313.33127961
+1227 operations completed in 45 seconds
+Average WIPS: 27.2666666667 stddev: 7.45490530021
+Average WIRT: 132.372881356 stddev: 196.192682613
+1787 operations completed in 45 seconds
+Average WIPS: 39.7111111111 stddev: 11.1772568619
+Average WIRT: 39.4797245601 stddev: 79.4368594077
+2320 operations completed in 45 seconds
+Average WIPS: 51.5555555556 stddev: 12.7161779458
+Average WIRT: 14.5449137418 stddev: 40.1420339473
+2999 operations completed in 45 seconds
+Average WIPS: 66.6444444444 stddev: 15.5832331298
+Average WIRT: 12.3265494912 stddev: 45.1146853471
+3686 operations completed in 45 seconds
+Average WIPS: 81.9111111111 stddev: 18.4264180745
+Average WIRT: 10.6517690875 stddev: 35.2130406555
+4253 operations completed in 45 seconds
+Average WIPS: 94.5111111111 stddev: 21.3669311166
+Average WIRT: 7.02875399361 stddev: 25.744304145
+4971 operations completed in 45 seconds
+Average WIPS: 110.466666667 stddev: 24.0447847081
+Average WIRT: 7.77531820697 stddev: 30.5277767551
+5344 operations completed in 45 seconds
+Average WIPS: 118.755555556 stddev: 27.9675038184
+Average WIRT: 9.02128764278 stddev: 31.6561247398
+6107 operations completed in 45 seconds
+Average WIPS: 135.711111111 stddev: 29.3351995111
+Average WIRT: 8.1228668942 stddev: 31.4434728495
+6775 operations completed in 45 seconds
+Average WIPS: 150.555555556 stddev: 31.4846081398
+Average WIRT: 8.54597002835 stddev: 33.3563893695
+7376 operations completed in 45 seconds
+Average WIPS: 163.911111111 stddev: 31.5107402529
+Average WIRT: 2.49530956848 stddev: 13.0974962684
+7856 operations completed in 45 seconds
+Average WIPS: 174.577777778 stddev: 37.6186870291
+Average WIRT: 9.67967792753 stddev: 37.827411637
+8464 operations completed in 45 seconds
+Average WIPS: 188.088888889 stddev: 37.7144958039
+Average WIRT: 2.55802549853 stddev: 17.3306355614
+9064 operations completed in 45 seconds
+Average WIPS: 201.422222222 stddev: 46.9883929175
+Average WIRT: 6.90690690691 stddev: 27.6615329456
+9534 operations completed in 45 seconds
+Average WIPS: 211.866666667 stddev: 45.0577673396
+Average WIRT: 9.5000722439 stddev: 38.6125478895
+10327 operations completed in 45 seconds
+Average WIPS: 229.488888889 stddev: 50.9345084711
+Average WIRT: 13.6465619638 stddev: 51.4898574635
+11462 operations completed in 45 seconds
+Average WIPS: 254.711111111 stddev: 60.6678724086
+Average WIRT: 16.4980359481 stddev: 51.3355900783
+12077 operations completed in 45 seconds
+Average WIPS: 268.377777778 stddev: 55.0395274137
+Average WIRT: 5.23619806488 stddev: 24.4389451129
+12563 operations completed in 45 seconds
+Average WIPS: 279.177777778 stddev: 56.4221122082
+Average WIRT: 5.41850220264 stddev: 23.267937993
+13202 operations completed in 45 seconds
+Average WIPS: 293.377777778 stddev: 65.877108344
+Average WIRT: 14.6690796277 stddev: 53.6249987416
+13876 operations completed in 45 seconds
+Average WIPS: 308.355555556 stddev: 68.6213389019
+Average WIRT: 17.7304261645 stddev: 48.8167096289
+14162 operations completed in 45 seconds
+Average WIPS: 314.711111111 stddev: 91.5633111149
+Average WIRT: 167.339839598 stddev: 566.615413107
+14935 operations completed in 45 seconds
+Average WIPS: 331.888888889 stddev: 77.4985575291
+Average WIRT: 77.175300985 stddev: 197.546811705
+15543 operations completed in 45 seconds
+Average WIPS: 345.4 stddev: 77.4648209389
+Average WIRT: 77.396959311 stddev: 224.916042977
+7764 operations completed in 45 seconds
+Average WIPS: 172.533333333 stddev: 82.7105118312
+Average WIRT: 5115.64107449 stddev: 6424.7930648
+6969 operations completed in 45 seconds
+Average WIPS: 154.866666667 stddev: 78.577139901
+Average WIRT: 5582.38827993 stddev: 6675.20960443
+6542 operations completed in 45 seconds
+Average WIPS: 145.377777778 stddev: 76.7738505603
+Average WIRT: 5937.17045455 stddev: 6927.3883018
+5243 operations completed in 45 seconds
+Average WIPS: 116.511111111 stddev: 70.6061605237
+Average WIRT: 8056.02029622 stddev: 8831.89756554
+4002 operations completed in 45 seconds
+Average WIPS: 88.9333333333 stddev: 64.3135039658
+Average WIRT: 9769.89989644 stddev: 9320.90034582
+3206 operations completed in 45 seconds
+Average WIPS: 71.2444444444 stddev: 52.6259659554
+Average WIRT: 11163.0474041 stddev: 9982.71262341
+rbe.EBTPCW2Factory
+616 operations completed in 45 seconds
+Average WIPS: 13.6888888889 stddev: 5.0438444924
+Average WIRT: 31.4130434783 stddev: 89.149815708
+1203 operations completed in 45 seconds
+Average WIPS: 26.7333333333 stddev: 8.5023291955
+Average WIRT: 48.0659840728 stddev: 116.557364085
+1814 operations completed in 45 seconds
+Average WIPS: 40.3111111111 stddev: 11.1917038286
+Average WIRT: 63.1090487239 stddev: 125.36681768
+2452 operations completed in 45 seconds
+Average WIPS: 54.4888888889 stddev: 16.5959880545
+Average WIRT: 81.0027855153 stddev: 135.238838233
+3037 operations completed in 45 seconds
+Average WIPS: 67.4888888889 stddev: 18.9777373828
+Average WIRT: 97.1685393258 stddev: 146.646008403
+3580 operations completed in 45 seconds
+Average WIPS: 79.5555555556 stddev: 24.3929117725
+Average WIRT: 127.094240838 stddev: 163.657420513
+4156 operations completed in 45 seconds
+Average WIPS: 92.3555555556 stddev: 27.7074658034
+Average WIRT: 149.070385126 stddev: 187.407176868
+4719 operations completed in 45 seconds
+Average WIPS: 104.866666667 stddev: 35.2237610979
+Average WIRT: 334.825072886 stddev: 488.197272636
+5234 operations completed in 45 seconds
+Average WIPS: 116.311111111 stddev: 38.6456279371
+Average WIRT: 404.717230444 stddev: 565.578173524
+rbe.EBTPCW3Factory
+625 operations completed in 45 seconds
+Average WIPS: 13.8888888889 stddev: 6.00243096412
+Average WIRT: 16.2222222222 stddev: 61.0252755026
+1188 operations completed in 45 seconds
+Average WIPS: 26.4 stddev: 9.37614243928
+Average WIRT: 42.3391812865 stddev: 103.75956913
+1777 operations completed in 45 seconds
+Average WIPS: 39.4888888889 stddev: 11.5801205918
+Average WIRT: 54.272517321 stddev: 119.815668697
+2347 operations completed in 45 seconds
+Average WIPS: 52.1555555556 stddev: 16.5200312648
+Average WIRT: 69.8542274052 stddev: 131.030358664
+2999 operations completed in 45 seconds
+Average WIPS: 66.6444444444 stddev: 17.1217823659
+Average WIRT: 115.681818182 stddev: 190.659336661
