@@ -64,3 +64,11 @@ Logbook - Grupo 06
 	- Scripts para o banco de dados(Matheus e Lucas)
 	- Criar banco de dados "dummy" e tentar fazer acesso remoto(Pedro)
 	- Resolver inconsist√™ncias do git config(Pedro)
+
+2016/04/08
+
+	- Criado Banco secund√rio(Matheus)
+	- Ativar Streaming replication(Gabriel, Jo√o e Matheus)
+	- Entender Haproxy(Lucas)
+        - Criar banco de dados "dummy" e tentar fazer acesso remoto(Pedro)
+	- Git config consertado(havia um user local que sobrescrevia os globais)(Pedro)
