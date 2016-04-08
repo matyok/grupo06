@@ -63,3 +63,4 @@ Logbook - Grupo 06
 	- Estudando como injetar falhas(Matheus e Lucas)
 	- Scripts para o banco de dados(Matheus e Lucas)
 	- Criar banco de dados "dummy" e tentar fazer acesso remoto(Pedro)
+	- Resolver inconsistências do git config(Pedro)
