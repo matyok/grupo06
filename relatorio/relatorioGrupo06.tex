@@ -1,5 +1,5 @@
-% Exemplo de relatÛrio tÈcnico do IC
-% Criado por P.J.de Rezende antes do Alvorecer da HistÛria.
+% Exemplo de relat√≥rio t√©cnico do IC
+% Criado por P.J.de Rezende antes do Alvorecer da Hist√≥ria.
 % Modificado em 97-06-15 e 01-02-26 por J.Stolfi.
 % Last edited on 2003-06-07 21:12:18 by stolfi
 % modificado em 1o. de outubro de 2008
@@ -10,11 +10,11 @@
 \usepackage{techrep-ic}
 \usepackage{indentfirst}
 
-%%% SE USAR INGL S, TROQUE AS ATIVA«’ES DOS DOIS COMANDOS A SEGUIR:
+%%% SE USAR INGL√äS, TROQUE AS ATIVA√á√ïES DOS DOIS COMANDOS A SEGUIR:
 \usepackage[brazil]{babel}
 %% \usepackage[english]{babel}
 
-%%% SE USAR CODIFICA«√O LATIN1, TROQUE AS ATIVA«’ES DOS DOIS COMANDOS A
+%%% SE USAR CODIFICA√á√ÉO LATIN1, TROQUE AS ATIVA√á√ïES DOS DOIS COMANDOS A
 %%% SEGUIR:
 %% \usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenc}
@@ -22,41 +22,41 @@
 
 \begin{document}
 
-%%% P¡GINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% P√ÅGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
-% N˙mero do relatÛrio
+% N√∫mero do relat√≥rio
 \TRNumber{01}
 
-% DATA DE PUBLICA«√O (PARA A CAPA)
+% DATA DE PUBLICA√á√ÉO (PARA A CAPA)
 %
-\TRYear{16}  % Dois dÌgitos apenas
-\TRMonth{03} % NumÈrico, 01-12
+\TRYear{16}  % Dois d√≠gitos apenas
+\TRMonth{03} % Num√©rico, 01-12
 
-% LISTA DE AUTORES PARA CAPA (sem afiliaÁıes).
+% LISTA DE AUTORES PARA CAPA (sem afilia√ß√µes).
 \TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Lucas Morais \and Matheus Figueiredo \and Pedro Grij{\'o}}
 
-% TÕTULO PARA A CAPA (use \\ para forÁar quebras de linha).
+% T√çTULO PARA A CAPA (use \\ para for√ßar quebras de linha).
 \TRTitle{MC437 - Grupo06 - Relat{\'o}rio 1}
 
 \TRMakeCover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% O que segue È apenas uma sugest„o - sinta-se ‡ vontade para
+% O que segue √© apenas uma sugest√£o - sinta-se √† vontade para
 % usar seu formato predileto, desde que as margens tenham pelo
 % menos 25mm nos quatro lados, e o tamanho do fonte seja pelo menos
-% 11pt. Certifique-se tambÈm de que o tÌtulo e lista de autores
-% est„o reproduzidos na Ìntegra na p·gina 1, a primeira depois da
-% p·gina de capa.
+% 11pt. Certifique-se tamb√©m de que o t√≠tulo e lista de autores
+% est√£o reproduzidos na √≠ntegra na p√°gina 1, a primeira depois da
+% p√°gina de capa.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Nomes de autores ABREVIADOS e titulo ABREVIADO,
-% para cabeÁalhos em cada p·gina.
+% para cabe√ßalhos em cada p√°gina.
 %
 \markboth{Bueno, Fid{\'e}lis, Figueiredo, Grij{\'o}, Morais}{MC437 - Grupo06}
 \pagestyle{myheadings}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TÕTULO e NOMES DOS AUTORES, completos, para a p·gina 1.
+% T√çTULO e NOMES DOS AUTORES, completos, para a p√°gina 1.
 % Use "\\" para quebrar linhas, "\and" para separar autores.
 %
 \title{MC437 - Grupo06}
@@ -76,15 +76,15 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
   Utilizamos o benchmark TPC-W, que modela uma livraria online, atrav\'es de um ambiente controlado, para simular atividades num servidor WEB. Em conjunto com o simulador RBE, que gera tr\^es diferentes perfis de carga (Shopping, Ordering e Browsing), pudemos checar o desempenho do servidor instalado num cluster no IC, ao vermos o n\'umero de WIPS (WEB Interactions per Second) gerados por diferentes cargas. O relat\'orio refere-se a primeira parte do projeto da disciplina de MC437 (Projeto de Sistemas de Informa\c{c}\~ao) e tem como objetivo fazer uma avalia\c{c}\~ao inicial do desempenho de nosso servidor para podermos melhor\'a-lo durante o semestre.
 \end{abstract}
 
-\section{Introdu√ß√£o}
+\section{Introdu√É¬ß√É¬£o}
 \setlength{\parindent}{4ex}
-Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site de compras com dados gerados aleatoriamente. Tamb√©m foi instalado na m√°quina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que √© uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
+Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site de compras com dados gerados aleatoriamente. Tamb√É¬©m foi instalado na m√É¬°quina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que √É¬© uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
-  O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho √© gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes s√£o de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
+  O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho √É¬© gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes s√É¬£o de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
 
-  	O objetivo deste primeiro relat√≥rio foi s√≥ colocar o sistema para funcionar e testar sua integridade e disponibilidade para que possamos melhorar estes resultados durante o semestre.
+  	O objetivo deste primeiro relat√É¬≥rio foi s√É¬≥ colocar o sistema para funcionar e testar sua integridade e disponibilidade para que possamos melhorar estes resultados durante o semestre.
 
-\section{Condi√ß√µes Experimentais}
+\section{Condi√É¬ß√É¬µes Experimentais}
 \setlength{\parindent}{4ex}
 
 	 Nesta se\c{c}\~ao ser\~ao descritas as configura\c{c}\~oes de hardware e software utilizadas nos experimentos, os par\^ametros dos RBEs e como foi feita a sincroniza\c{c}\~ao das m\'aquinas.
