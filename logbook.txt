@@ -72,3 +72,8 @@ Logbook - Grupo 06
 	- Entender Haproxy(Lucas)
         - Criar banco de dados "dummy" e tentar fazer acesso remoto(Pedro)
 	- Git config consertado(havia um user local que sobrescrevia os globais)(Pedro)
+
+2016/04/13
+	- Escrita do manual e relatorio da parte 2(Pedro)
+	- Streaming replication funcionando corretamente(Gabriel e Joao)
+	- Configurando haproxy, porta 4002(porta do tomcat foi modificada para funcionar)(Matheus e Lucas)
