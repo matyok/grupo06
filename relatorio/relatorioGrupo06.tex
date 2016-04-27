@@ -25,18 +25,18 @@
 %%% PÁGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
 % Número do relatório
-\TRNumber{01}
+\TRNumber{02}
 
 % DATA DE PUBLICAÇÃO (PARA A CAPA)
 %
 \TRYear{16}  % Dois dígitos apenas
-\TRMonth{03} % Numérico, 01-12
+\TRMonth{04} % Numérico, 01-12
 
 % LISTA DE AUTORES PARA CAPA (sem afiliações).
 \TRAuthor{Gabriel Oliveira \and Jo{\~a}o Fid{\'e}lis \and Lucas Morais \and Matheus Figueiredo \and Pedro Grij{\'o}}
 
 % TÍTULO PARA A CAPA (use \\ para forçar quebras de linha).
-\TRTitle{MC437 - Grupo06 - Relat{\'o}rio 1}
+\TRTitle{MC437 - Grupo06 - Relat{\'o}rio 2}
 
 \TRMakeCover
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,62 +73,76 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 
 \begin{abstract} 
 \setlength{\parindent}{4ex}
-  Utilizamos o benchmark TPC-W, que modela uma livraria online, atrav\'es de um ambiente controlado, para simular atividades num servidor WEB. Em conjunto com o simulador RBE, que gera tr\^es diferentes perfis de carga (Shopping, Ordering e Browsing), pudemos checar o desempenho do servidor instalado num cluster no IC, ao vermos o n\'umero de WIPS (WEB Interactions per Second) gerados por diferentes cargas. O relat\'orio refere-se a primeira parte do projeto da disciplina de MC437 (Projeto de Sistemas de Informa\c{c}\~ao) e tem como objetivo fazer uma avalia\c{c}\~ao inicial do desempenho de nosso servidor para podermos melhor\'a-lo durante o semestre.
+
 \end{abstract}
 
 \section{Introdução}
 \setlength{\parindent}{4ex}
-Este trabalho \'e um relat\'orio da primeira parte do projeto da displina, que consistiu em preparar a m\'aquina remota, instalando o servidor Tomcat, o banco de dados PostgreSQL e integrando todas essas funcionalidades para fazer um site de compras com dados gerados aleatoriamente. Também foi instalado na máquina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que é uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi instalado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros. O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
-  O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho é gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes são de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
-
-  	O objetivo deste primeiro relatório foi só colocar o sistema para funcionar e testar sua integridade e disponibilidade para que possamos melhorar estes resultados durante o semestre.
 
 \section{Condições Experimentais}
 \setlength{\parindent}{4ex}
-
+\begin{itshape}
 	 Nesta se\c{c}\~ao ser\~ao descritas as configura\c{c}\~oes de hardware e software utilizadas nos experimentos, os par\^ametros dos RBEs e como foi feita a sincroniza\c{c}\~ao das m\'aquinas.
 	
 	Os experimentos foram feitos no cluster disponilizado pelo Instituto de Computa\c{c}\~ao(IC). A m\'aquina utilizada possui a seguinte configura\c{c}\~ao: sistema operacional Ubuntu 14.04, CPU Intel(R) Core(TM)2 Quad CPU 2.66GHz e mem\'oria RAM de 4GB e 1333 MHz.
 
 	Utilizamos o servidor web Apache Tomcat vers\~ao 7 e PostgreSQL vers\~ao 9.5.1.
 
+\end{itshape}
+
 \section{Metodologia de Pesquisa}
 \setlength{\parindent}{4ex}
+\begin{itshape}
 Para analisar a disponibilidade de nosso servidor, fizemos um script que executa o comando do RBE diversas vezes variando o n\'umero de usu\'arios para cada perfil. Por exemplo, Fizemos o RBE simular 100 usu\'arios com o perfil Shopping e medimos o WIPS m\'edio. Variamos o n\'umero de usu\'ario de 100 a 4000 incrementando esse n\'umero em 100 a cada vez. Tamb\'em, utilizamos os valores de \textit{Ramp-up Time} em 5s, \textit{Measurement Interval} em 30s, \textit{Ramp-down Time} em 5s e o resto dos par\^ametros no valor padr\~ao.
+\end{itshape}
+
+Valores utilizados - Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s
 
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
-A seguir, veremos os gr\'aficos gerados pela execu\c{c}\~ao do RBE no cluster.
 
-\begin{center}
-\includegraphics[width=15cm, height=10cm]{images/plot_1_browsing}
-Figura 1: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Browsing
-\end{center}
+Seguem os gráficos gerados pela execução do RBE para cada experimento
 
-Podemos ver claramente que o WIPS cresce linearmente com o n\'umero de usu\'arios at\'e o valor de 2500 usu\'arios. Ap\'os este valor, ele cai para quase a metade e come\c{c}a a decrescer praticamente linearmente. Podemos dizer que esse \'e o ponto de satura\c{c}\~ao do servidor.
+Experimento 1: sem replicação.
+- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
+Réplica primária ativa, réplica secundária desligada.
 
-\begin{center}
-\includegraphics[width=15cm, height=10cm]{images/plot_2_shopping}
-Figura 2: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Shopping
-\end{center}
+Experimento 2: sobrecarga gerada pela replicação.
+- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
+Réplica primária ativa, réplica secundária  ativa como hot standby.
 
-\'E poss\'ivel ver que h\'a um crescimento linear do n\'umero m\'edio de WIPS at\'e o ponto de satura\c{c}\~ao que gira em torno de 1100 usu\'arios no modo Shopping. O pico de WIPS tamb\'em se mostrou menor que o pico de WIPS no modo Browsing, o que mostra o fardo que s\~ao as opera\c{c}\~oes de escritas ao servidor. Ap\'os atingir o ponto de satura\c{c}\~ao, n\~ao houve um grande decrescimo os valores ficaram em m\'edia apenas 20\% menores que o pico.
+Os  experimentos  1 e  2  devem  ser  utilizados para  caracterizar  o
+desempenho  (operações/s  e tempo  de  resposta)  em função  da  carga
+aplicada.
 
-\begin{center}
-\includegraphics[width=15cm, height=10cm]{images/plot_3_ordering}
-Figura 3: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE no perfil Ordering
-\end{center}
+O  objetivo é  encontrar  a carga  que produz  o  melhor resultado  de
+desempenho. Essa carga deve ser empregada no experimento 3.
 
-Infelizmente, houve um erro na realiza\c{c}\~ao do teste e o gr\'afico n\~ao foi desenhado por completo, parando com n\'umero de usu\'arios em 800, o que n\~ao nos possibilitou achar seu ponto de satura\c{c}\~ao, mas vemos que o crescimento do WIPS m\'edio no come\c{c}o \'e linear com o n\'umero de usu\'arios.
 
-\begin{center}
-\includegraphics[width=15cm, height=10cm]{images/plot_all}
-Figura 4: M\'edia de WIPS em fun\c{c}\~ao do n\'umero de usu\'arios simulados pelo RBE nos tr\^es perfis juntos
-\end{center}
+Experimento 3: injeção de falha no primário.
+- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
+Replicado, com falha  do primário e promoção manual  do secundário.  Com
+falha  injetada  aproximadamente  na  metade da  duração  do
+experimento.
 
-Vemos que o WIPS m\'edio cresce na mesma propor\c{c}\~ao para todos os perfis, at\'e chegar ao ponto de satura\c{c}\~ao, onde os comportamentos variam.
+O objetivo  do experimento 3  é medir o período  em que o  sistema não
+está disponível: quanto menor, melhor.  Realizem um número suficiente de
+experimentos  que permita  que o  grupo  argumente que  o resultado  é
+confiável  (reprodutível)  e  discuta   as  potenciais  causas  para  a
+indisponibilidade.
+
+- Think Time (TT)  deve ser otimizado  para  obtenção  de  melhor  desempenho.
+
+- Banco  de  Dados: utilizar o dump fornecido.
+
+Configuração para execução:
+
+rbes em um ou mais nós do  bloco, tpc-w (tomcat) e haproxy no servidor
+dedicado  a cada  grupo  e bancos  de dados  em  seus respectivos  nós
+(dbmaster, dbslave ou dbmaster2, dbslave2).
+
 
 \section{Conclus\~ao}
-Conclu\'imos que com esses dados obtidos n\'os j\'a podemos trabalhar ao longo do semestre para obtermos melhores resultados dos que apresentados nesses gr\'aficos, seja, por exemplo, aumentando o pico de WIPS m\'edio ou aumentando o valor do ponto de satura\c{c}\~ao.
+
 \end{document}
