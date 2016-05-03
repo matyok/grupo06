@@ -2,37 +2,62 @@
 
 alias sshdbslave2='ssh ra137036@dbslave2'
 
-## - Subir banco de dados primário
-echo "/===--- [Master Script]: subindo o banco primário ---===/"
-ssh ra137036@dbmaster2 'python dumpmaster.py'
+RBE_CMD='java -Xmx8196m -cp /nfs/rbe/rbe.jar rbe.RBE'
 
-echo; echo; echo
+for i in $(seq 3)
+do 
+	echo "Iniciando run $i"
+	echo; echo; echo;
 
-## - Subir slave como secundário em hot standby
-echo "/===--- [Master Script]: Subindo o secundário como hot standby ---===/"
-ssh ra137036@dbslave2 'python reconf-dbslave.py'
+	## - Desligar HAPROXY
+	sudo service haproxy stop
 
-echo; echo; echo
+	## - Subir banco de dados primário
+	echo "/===--- [Master Script]: subindo o banco primário ---===/"
+	ssh ra137036@dbmaster2 'python dumpmaster.py'
 
-## - Iniciar RBE
-echo "/===--- [Master Script]: Chamando o RBE ---===/"
-java -Xmx8196m -cp /nfs/rbe/rbe.jar rbe.RBE -WWW http://localhost:8080/tpcw/ -RU 5 -MI 20 -RD 5 &
+	echo; echo; echo
 
-echo; echo; echo
+	## - Subir slave como secundário em hot standby
+	echo "/===--- [Master Script]: Subindo o secundário como hot standby ---===/"
+	ssh ra137036@dbslave2 './reconfslave.sh'
 
-echo "Time until shutting down primary... 15"
-for i in $(seq 15)
-do
-	sleep 1
-	echo "Time until shutting down primary... $[15-$i]"
+	echo; echo; echo
+
+	## - Ligar HAPROXY
+	sudo service haproxy start
+
+	## - Reiniciar o tomcat
+	sudo service tomcat7 restart
+
+	## - Iniciar RBE
+	echo "/===--- [Master Script]: Chamando o RBE ---===/"
+
+	EB_VAL="rbe.EBTPCW"$i"Factory"
+
+	OUT_FILE="../rbe/arc2/out-rbe-file${i}.m"
+	$RBE_CMD -EB $EB_VAL 400 -OUT $OUT_FILE -MAXERROR 0 -WWW http://localhost:8080/tpcw/ -RU 5 -MI 90 -RD 5 -DEBUG 10 > ../rbe/arc2/rbe_output${i}.txt &
+
+	echo; echo; echo
+
+	echo "Time until shutting down primary... 45"
+	for i in $(seq 45)
+	do
+		sleep 1
+		echo "Time until shutting down primary... $[45-$i]"
+	done
+
+	## - Parar o primeiro banco
+	echo "/===--- [Master Script]: Parando o banco primário ---===/"
+	ssh ra137036@dbmaster2 'pg_ctlcluster 9.5 grupo06 stop -m fast'
+
+	echo; echo; echo
+
+	## - Promove o segundo banco a primário
+	echo "/===--- [Master Script]: Promovendo o segundo banco a primário ---===/"
+	ssh ra137036@dbslave2 'pg_ctlcluster 9.5 grupo06 promote'
+
+	sleep 90
+	echo "Terminando run $i em 20 segundos..."
+	sleep 20
 done
-
-## - Parar o primeiro banco
-echo "/===--- [Master Script]: Parando o banco primário ---===/"
-ssh ra137036@dbmaster2 'pg_ctlcluster 9.5 grupo06 stop -m fast'
-
-echo; echo; echo
-
-## - Promove o segundo banco a primário
-echo "/===--- [Master Script]: Promovendo o segundo banco a primário ---===/"
-ssh ra137036@dbslave2 'pg_ctlcluster 9.5 grupo06 promote'
