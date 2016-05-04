@@ -78,15 +78,15 @@ O relat\'orio refere-se a segunda parte do projeto da disciplina de MC437 (Proje
 \end{abstract}
 
 \section{Introdução}
-Este trabalho \'e um relat\'orio da segunda parte do projeto da displina, que consistiu em preparar além da m\'aquina remota com o servidor Tomcat, utlizar duas máquinas desse cluster com instâncias do PostgreSQL, uma com um banco de dados atuando como primário e outra atuando como um banco secundário em hot-standby para integrar todas essas funcionalidades e fazer um site de compras com dados gerados aleatoriamente.
+Este trabalho \'e um relat\'orio da segunda parte do projeto da disciplina MC437 - Projeto de Sistemas de Informação. Essa parte foi constituída pela preparação de uma m\'aquina remota com um servidor  webApache Tomcat, utlização de duas máquinas remotas com instâncias de bancos de dados PostgreSQL, uma com um banco atuando como primário e outra com um banco secundário em hot-standby, utilizado para integrar todas essas funcionalidades e fazer um site de compras com dados gerados aleatoriamente.
 
-    Também foi instalado na máquina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que é uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi utlizado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros.
+    Também foi instalado na máquina do web server o aplicativo TPC-W, um benchmark de transa\c{c}\~oes web. Para fazer uso do TPC-W, foi utlizado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, sendo que este implementa uma livraria digital.
+    
+    O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP gerado por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
-    O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
+    Também utilizamos o HAProxy, que atua como um proxy para aplicações baseadas em TCP e HTTP. Ele oferece alta disponibilidade e balanceamento de carga para servidores web. Neste trabalho, sua função é de detectar falha do banco primário e redirecionar as requisições feitas para o banco secundário, que deve ser promovido a banco primário.
 
-    Também utilizamos o HAProxy, que atua como um proxy para aplicações baseadas em TCP e HTTP. Ele oferece alta disponibilidade e balanceamento de carga para servidores web. Sua função nesse trabalho é assim que detectar que o banco primário falhou, redirecionar as requisições feitas para o antigo banco secndário que deve ser promovido a banco primário.
-
-    O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho é gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes são de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
+    O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second). O fluxo de trabalho é gerado pelo RBE e pode ser de tr\^es perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes são de leitura e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem 50\% de suas opera\c{c}\~oes de leitura e 50\% de escrita.
 
     Rodamos três experimentos diferentes, o primeiro apenas com o banco primário ativo, o segundo com o primário ligado e o secundário ligado em hot-standby e o terceiro onde na metade do experimento, o primário era desativado para que o secundário pudesse ser promovido.
 
