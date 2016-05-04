@@ -109,17 +109,17 @@ Este trabalho \'e um relat\'orio da segunda parte do projeto da disciplina MC437
 
 \section{Metodologia de Pesquisa}
 \setlength{\parindent}{4ex}
-Foi necessário executar três diferentes experimentos. Cada experimento consiste em rodar o RBE para simular uma carga no servidor e avaliarmos as medições feitas.
+Foram executados três diferentes experimentos. Cada experimento consistiu em rodar o RBE para simular uma carga no servidor, e após isso foram avaliadas as medições realizadas pelo RBE.
 
-O primeiro experimento, foi utilizar o RBE com apenas o banco primário ligado. No segundo experimento, estavam ligados os bancos primários e o secundário em hot-standby.
+No primeiro experimento, o RBE foi utilizado com apenas o banco primário ligado. No segundo experimento, estavam ligados o banco primário e o banco secundário em hot-standby.
 
-Esses dois experimentos, são feitos para caracterizar nosso servidor. O objetivo é medir a maior carga para a qual ele se comporta de forma consistente.
+Esses dois experimentos foram feitos para caracterizar o servidor. O objetivo foi medir a maior carga para a qual ele se comporta de forma consistente.
 
-Para isso, variamos os valores de carga entre 2000 e 4000 clientes, variando de 1000 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que nos mostram até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
+Para isso, variamos os valores de carga entre 2000 e 4000 clientes, variando de 1000 em 1000 para cada iteração para cada perfil de usuário descrito anteriormente. Assim,  gráficos foram gerados para demonstrar até qual carga o servidor se manteve num bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
 
-Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para simular essa "carga ótima" no servidor, causando um failover  manualmente (isto é, matando o banco de dados primário), enquanto promovemos o banco de dados secundário, para ver em quanto tempo nosso servidor consegue se recuperar e voltar a ficar ativo.
+O valor encontrado foi utilizado no RBE para simular essa "carga ótima" no servidor, causando um failover manualmente (isto é, matando o banco de dados primário), enquanto o banco de dados secundário era promovido, para ver em quanto tempo o servidor conseguia se recuperar e voltar a ficar ativo.
 
-É importante ressaltar que sempre rodamos o RBE de outra máquina remota (CBN7), diferente de nosso servidor, e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
+É importante ressaltar que o RBE sempre foi RBE de outra máquina remota (CBN7), diferente de da máquina do servidor(CBN6), e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
 
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
@@ -127,7 +127,7 @@ Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para si
 Seguem os gráficos gerados pela execução do RBE para cada experimento.
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_browsin}
-Figura 1: WIPSb por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 1
+Figura 1: WIPS por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 1
 \end{center}
 Vemos que 4000 usuários teve uma boa consistência durante o meio do experimento mas uma grande queda no final, assim como o de 3000. O de 4000 também houve uma variação grande por volta dos 15 segundos.
 \begin{center}
