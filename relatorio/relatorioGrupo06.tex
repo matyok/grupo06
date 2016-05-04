@@ -124,48 +124,51 @@ O valor encontrado foi utilizado no RBE para simular essa "carga ótima" no serv
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
 
-Seguem os gráficos gerados pela execução do RBE para cada experimento.
+Seguem os gráficos gerados pela execução do RBE para o experimento 1.
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_browsin}
-Figura 1: WIPS por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 1
+Figura 1: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Browsing do experimento 1
 \end{center}
-Vemos que 4000 usuários teve uma boa consistência durante o meio do experimento mas uma grande queda no final, assim como o de 3000. O de 4000 também houve uma variação grande por volta dos 15 segundos.
+Nota-se que o experimento com 4000 clientes teve uma boa consistência entre 30 e 90 segundos, porém houve uma grande queda por volta dos 15s e a partir dos 90s. O mesmo ocorreu no caso para 3000 clientes a partir de 90s.
+
 \begin{center}
+\vspace{-1em}
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_ordering}
-Figura 2: WIPSo por tempo para cada carga simulada pelo RBE no perfil Ordering no experimento 1
+Figura 2: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Ordering do experimento 1
 \end{center}
-Pelo gráfico, podemos ver que oteste com 3000 clientes teve o melhor desempenho no geral. Até a metade, 2000 usuários estava melhor mas depois 3000 foi crescendo e manteve uma boa taxa até o final.
+Pelo gráfico, é visível que o teste com 3000 clientes obteve o melhor desempenho no geral. Até 50s, o desempenho era melhor com 2000 clientes, porém após esse tempo o teste com 3000 clientes obteve uma quantidade maior de WIPS e se manteve consistentemente melhor que os testes com 2000 e 4000 clientes. 
+
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_shopping}
-Figura 3: WIPS por tempo para cada carga simulada pelo RBE no perfil Shopping no experimento 1
+Figura 3: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Shopping do experimento 1
 \end{center}
 
 Neste gráfico, ficou evidente o melhor desempenho da simulação com 3000 clientes sobre as duas outras. Uma melhor taxa de WIPS foi obtida durante praticamente todo o experimento.
 
-Esses três gráficos combinados, nos dá indícios de que 3000 usuários talvez seja o melhor número a ser utilizado, pois tem taxas de WIPS mais altas e estáveis que as outras testadas.
+Com a combinação dos resultados desses gráficos, temos indícios de que 3000 usuários talvez seja o melhor número a ser utilizado, pois tem taxas de WIPS mais altas e estáveis que as outras quantidades de usuários testadas.
 
 Agora, analisaremos os dados do experimento 2.
 
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp2/plot_browsin}
-Figura 4: WIPSb por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 2
+Figura 4: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Browsing do experimento 2
 \end{center}
 
-O gráfico indica que um melhor desempenho no geral para 4000 clientes, porém, há uma grande queda no final, que pode indicar problemas devido a alta carga.
+O gráfico indica um melhor desempenho geral para 4000 clientes. Entretanto, no final do experimento há uma grande queda, que indica problemas devido a alta carga. Nesse caso, 3000 clientes apresenta melhor estabilidade em relação a 4000 e maior quantidade de WIPS em relação a 2000 clientes
 
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp2/plot_ordering}
-Figura 5: WIPSo por tempo para cada carga simulada pelo RBE no perfil Ordering no experimento 2
+Figura 5: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Ordering do experimento 2
 \end{center}
 
-Vemos um melhor desempenho de 3000 clientes no geral, que manteve uma boa média durante todo o experimento e se manteve no mesmo nível de WIPS para 4000 clientes na segunda metade do experimento.
+O melhor desempenho geral foi para 3000 clientes, pois essa carga manteve uma boa média durante todo o experimento e se manteve no mesmo nível de WIPS para 4000 clientes na segunda metade do experimento.
 
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp2/plot_shopping}
-Figura 6: WIPS por tempo para cada carga simulada pelo RBE no perfil Shopping no experimento 2
+Figura 6: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Shopping do experimento 2
 \end{center}
 
-Podemos ver que 4000 clientes mantiveram uma taxa de WIPS melhor durante boa parte do experimento, mas existiu uma grande queda dos WIPS na segunda metade, assim como no perfil de Browsing, o que pode indicar que essa carga já está alta e sobrecarregando o servidor.
+Este resultado se assemelha ao do perfil Browsing. 4000 clientes possui bom desempenho até ~70s do experimento, quando sofre queda de WIPS, o que indica que esta alta carga sobrecarrega o servidor. Como no perfil Browsing, a carga mais estável é de 3000 clientes.
 
 \section{Conclus\~ao}
 
