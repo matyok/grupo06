@@ -115,9 +115,9 @@ O primeiro experimento, foi utilizar o RBE com apenas o banco primário ligado. 
 
 Esses dois experimentos, são feitos para caracterizar nosso servidor. O objetivo é medir a maior carga para a qual ele se comporta de forma consistente.
 
-Para isso, variamos os valores de carga entre 1000 e DESCUBRA, variando de 500 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que analisam até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
+Para isso, variamos os valores de carga entre 1000 e DESCUBRA, variando de 500 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que nos mostram até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
 
-Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para simular essa "carga ótima" no servidor, causando um failover (isto é, matando o banco de dados primário) manualmente, enquanto promovemos o banco de dados secundário, para ver em quanto tempo nosso servidor consegue se recuperar e voltar a ficar ativo.
+Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para simular essa "carga ótima" no servidor, causando um failover  manualmente (isto é, matando o banco de dados primário), enquanto promovemos o banco de dados secundário, para ver em quanto tempo nosso servidor consegue se recuperar e voltar a ficar ativo.
 
 É importante ressaltar que sempre rodamos o RBE de outra máquina remota (CBN7), diferente de nosso servidor, e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
 
