@@ -13,8 +13,7 @@
     \begin{titlepage}
         \begin{figure}
             \centering
-%           \includegraphics[width=7cm,keepaspectratio=true]{imagens/unicamp.png}
-!!! DESCOMENTAR A IMAGEM !!!
+          \includegraphics[width=7cm,keepaspectratio=true]{imagens/unicamp.png}
 
         \end{figure}
         \begin{center}
@@ -174,7 +173,7 @@
         O código fonte do RBE, assim como arquivo README e o script em Python que realiza a análise das saídas estão disponíves na pasta do RBE.
 
         \subsubsection{Automatização}
-        Para facilitar a coleta dos dados foi implementado um script em bash que executa o rbe com variando os parâmetros () e as saídas, já executa o script analyse.py e gera os gráficos.
+        Para facilitar a coleta dos dados foi implementado um script em bash que executa o rbe com variando os parâmetros e as saídas, já executa o script analyse.py e gera os gráficos.
         Para executar o script basta executar:
         \begin{spverbatim}
             $ ./script.sh
@@ -233,12 +232,40 @@
 
           A flag -R no final, faz com que o arquivo recovery.conf seja gerado automaticamente no processo.
 
-    \subsection{Configurar o slave}
+    \subsection{Configuração do slave}
         Na máquina escrava, edite o arquivo /etc/postgresql/9.5/grupo06/postgresql.conf, adicionando as mesmas linhas que fez na máquina mestre, como nos passos anteriores. É necéssario adicionar mais uma linha, na seção \textbf{Standby servers}, adicione a linha:
           \begin{spverbatim}
-              hot_standby = on
+          	hot_standby = on
           \end{spverbatim}
 
         Isso faz com que o banco escravo seja read-only e aceite apenas comandos de leitura.
+
+\section{Configuração do haproxy}
+    
+\section{Automatização da coleta de dados}
+	
+	A segunda parte do experimento foi dividida em 3 partes. Para executar os testes da primeira parte, foram gerados os scripts \verb|arc2_exp1_script.sh| e \verb|arc2_exp_analise.sh| que devem ser executados da seguinte forma:
+	
+ 	\begin{spverbatim}
+	      ./arc2_exp1_script.sh 
+	      ./arc2_exp_analise.sh 1
+	\end{spverbatim} 
+\noindent
+\newline
+O argumento passado para o 2o script é simplesmente para geração de arquivos com o nome desejado.
+\newline
+
+Para executar os testes da segunda parte, foi gerado o script \verb|arc2_exp2_script.sh|. Seguem os comandos para executar:
+	\begin{spverbatim}
+	      ./arc2_exp2_script.sh 
+	      ./arc2_exp_analise.sh 2
+	\end{spverbatim}   
+\noindent
+\newline 	
+Para executar os testes da terceira parte, foi gerado o script \verb|arc2_exp3_script.sh|. Seguem os comandos para executar
+	\begin{spverbatim}
+	      ./arc2_exp3_script.sh 
+	      ./arc2_exp_analise.sh 3
+	\end{spverbatim}   
 
 \end{document}
