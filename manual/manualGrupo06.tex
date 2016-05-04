@@ -42,15 +42,15 @@
         \subsubsection{Interno ao IC}
         Para acceso interno ao ic, basta acessar por ssh o endereço cbn6.lab.ic.unicamp.br. No linux, isso pode ser feito através de:
         \begin{spverbatim}
-        $ ssh cbn6.lab.ic.unicamp.br
+        # ssh cbn6.lab.ic.unicamp.br
         \end{spverbatim}
 
         Após a conexão ser feita, insira sua senha.
         \subsubsection{Externo ao IC}
         Para o acesso externo, é necessário fazer uma conexão de duas fases ou usar um tunnel por uma máquina do ic. Para acesso remoto a uma máquina do ic, no linux, utilize \textbf{um} dentre os seguintes comandos:
         \begin{spverbatim}
-        $ ssh -l raXXXXXX ssh.students.ic.unicamp.br
-        $ ssh -l raXXXXXX ssh2.students.ic.unicamp.br
+        # ssh -l raXXXXXX ssh.students.ic.unicamp.br
+        # ssh -l raXXXXXX ssh2.students.ic.unicamp.br
         \end{spverbatim}
 
         Após a conexão ser feita, insira sua senha. Após feita a credencial, prossiga do mesmo modo como se tivesse acessando de dentro do IC.
@@ -60,7 +60,7 @@
         \subsubsection{Instalação}
         A versão utilizada do PostgreSQL é a versão 9.5, que pode ser obtida seguindo os seguintes comandos:
         \begin{spverbatim}
-        $ sudo su
+        # sudo su
         # cat /etc/apt/sources.list.d/postgresql.list
         # deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
         # sudo apt-get install wget ca-certificates
@@ -75,8 +75,8 @@
         Para configurar o acesso ao banco de dados deve-se alterar o arquivo de configuração principal. Nele são definidos toda a configuração de acesso ao banco de dados e os diretórios de dados que são respectivamente:
 
         \begin{spverbatim}
-    hba_file = '/etc/postgresql/9.5/main/pg_hba.conf'
-    data_directory = '/var/lib/postgresql/9.5/main'
+        hba_file = '/etc/postgresql/9.5/main/pg_hba.conf'
+        data_directory = '/var/lib/postgresql/9.5/main'
         \end{spverbatim}
 
         O arquivo pg\_hba.conf define regras para a conexão ao banco. Por padrão, são só permitidas conexões locais: o usuário administrador do banco (postgres, quando instalado por gerenciador de pacotes) tem acesso via socket e sem senha. os demais usuários, via interface local e com senha:
@@ -88,7 +88,7 @@
 
     Para criar o primeiro usuário siga os seguintes comandos:
         \begin{spverbatim}
-            $ sudo su
+            # sudo su
             # su postgres
             # psql
             =# CREATE ROLE <usr_name> with superuser createdb createrole login;
@@ -98,7 +98,7 @@
         \subsubsection{Carregando o Dump}
         Para carregar o ddump no banco deve-se criar o banco de dados (tpcw) e um usuário tpcw-user.
         \begin{spverbatim}
-            $ pg_restore -d tpcw tpcw-database-dump.tar
+        # pg_restore -d tpcw tpcw-database-dump.tar
         \end{spverbatim}
 
 
@@ -106,7 +106,7 @@
         \subsubsection{Instalação}
         Para instalar o Tomcat (usaremos o tomcat7), precisamos instalar o pacote do tomcat e suas dependencias. Para isso, no linux, podemos usar o apt-get:
         \begin{spverbatim}
-        $ sudo apt-get install tomcat7
+        # sudo apt-get install tomcat7
         \end{spverbatim}
 
         A instalação irá criar um usuário tomcat7 dentro de um grupo, tomcat7. Os arquivos estão em \$CATALINA\_BASE, que na instalação do Ubuntu é /var/lib/tomcat7.
@@ -135,13 +135,13 @@
         As aplicações implantadas no Tomcat são configuradas em \$CATALINA\_BASE/webapps. Para ter permissão de criar aplicações nesta pasta, o usuário tem que ser do grupo tomcat7, para fazer isso, no linux:
 
         \begin{spverbatim}
-            # adduser [usuário_comum] tomcat7
+        # adduser [usuário_comum] tomcat7
         \end{spverbatim}
 
         Para instalação default do TPC-W no tomcat7, crie a seguinte árvore:
         \begin{spverbatim}
 
-            $CATALINA_BASE/webapps
+            \$CATALINA_BASE/webapps
 
                 tpcw
 
@@ -158,12 +158,12 @@
 
         Na pasta tpcw, rode os seguintes comandos:
         \begin{spverbatim}
-            $ sudo cp /nfs/servlet/Images.tar.gz .
-            $ sudo tar -xzf Images.tar.gz
-            $ sudo cp /nfs/servlet/tpcw-servlets.tar.gz
-            $ sudo tar -xzf tpcw-servlets.tar.gz
-            $ cd tpcw-servlets.tar.gz
-            $ sudo make
+            # sudo cp /nfs/servlet/Images.tar.gz .
+            # sudo tar -xzf Images.tar.gz
+            # sudo cp /nfs/servlet/tpcw-servlets.tar.gz
+            # sudo tar -xzf tpcw-servlets.tar.gz
+            # cd tpcw-servlets.tar.gz
+            # sudo make
         \end{spverbatim}
 
         No fim, copie todas as *.class geradas para a pasta WEB-INF/classes e copie o web.xml para pasta WEB-INF/. Reinicie o Tomcat.
@@ -176,67 +176,99 @@
         Para facilitar a coleta dos dados foi implementado um script em bash que executa o rbe com variando os parâmetros e as saídas, já executa o script analyse.py e gera os gráficos.
         Para executar o script basta executar:
         \begin{spverbatim}
-            $ ./script.sh
+        # ./script.sh
         \end{spverbatim}
+
+\section{Entrando e conhecendo as novas máquinas}
+    Obtivemos acesso a duas máquinas diferentes do cluster que contém uma instância do postgres cada, assim, uma máquina conterá o banco primário e a outra o secundário.\\
+    O banco primário fica na máquina dbmaster2. Essa máquina tem IP 10.1.2.10 e o banco fica na porta 5434.\\
+    Já o banco secundário fica na máquina dbslave2. Essa máquina tem IP 10.1.2.20 e o banco fica na porta 5434.
+
+    Para acessar o dbmaster2, basta enquanto logado no cluster cbn6, dar ssh no seu endereço, assim:
+    \begin{spverbatim}
+    # ssh dbmaster2
+    \end{spverbatim}
+
+    Para acessar o dbslave2, basta enquanto logado no cluster cbn6, dar ssh no seu endereço, assim:
+    \begin{spverbatim}
+    # ssh dbslave2
+    \end{spverbatim}
+
+    As máquinas já vieram com a instalação do Postgres 9.5.1.
+
+    As pastas de dados para os bancos de dados em ambas as máquinas fica em \verb|/var/lib/postgresql/9.5/grupo06/|.
+
+    As pastas de configurações (como postgres.conf e pg\_hba.conf), ficam em \verb|/etc/postgresql/9.5/grupo06/|.
+
+    Também é necessário configurar e iniciar um banco de dados inicial no banco primário em dbmaster2.
+
+    Faça login na máquina dbmaster2 e crie um usuário "tpcw-user" como é ensinado na seção 2.1.2 e faça uma restauração do dump como na seção 2.1.3.
 
 \section{Instalando a Replicação}
     Era necessário instalar o serviço de Streaming Replication do banco primário para o secundário, para que mudanças feitas no banco primário sejam copiadas para o secundário. Para isto, seguimos tutoriais sugeridos pelo professor.
     Agora, temos dois bancos de dados em duas máquinas diferentes.
     \subsection{Editar configurações no mestre}
       Na máquina do banco primário, dbmaster2, vamos criar um usuário "replication" no postgres, que é um usuário com privilégios de replicação. O usuário terá a senha 123456. Para isso, execute os comandos:
-          \begin{spverbatim}
-              $ sudo su
-              # su postgres
-              # psql
-              # CREATE ROLE replication WITH REPLICATION PASSWORD ‘123456’ LOGIN
-          \end{spverbatim}
+      \begin{spverbatim}
+      # sudo su
+      # su postgres
+      # psql
+      # CREATE ROLE replication WITH REPLICATION PASSWORD ‘123456’ LOGIN
+      \end{spverbatim}
 
       Agora, vamos editar o arquivo /etc/postgresql/9.5/grupo06/postgresql.conf da máquina dbmaster2.
       Na seção \textbf{CONNECTIONS AND AUTHENTICATION}, adicione a linha:
-          \begin{spverbatim}
-              listen_addresses = '*'
-          \end{spverbatim}
+      \begin{spverbatim}
+      listen_addresses = '*'
+      \end{spverbatim}
 
       Na seção \textbf{WRITE AHEAD LOG}, adicione as linhas:
-          \begin{spverbatim}
-              wal_level = hot_standby
-          \end{spverbatim}
+      \begin{spverbatim}
+      wal_level = hot_standby
+      \end{spverbatim}
 
       Em \textbf{REPLICATION}, coloque as linhas:
-          \begin{spverbatim}
-              max_wal_senders = 5
-              wal_keep_segments = 32
-          \end{spverbatim}
+      \begin{spverbatim}
+      max_wal_senders = 5
+      wal_keep_segments = 32
+      \end{spverbatim}
 
       Finalmente, em \textbf{ARCHIVING}, adicionamos as linhas:
-          \begin{spverbatim}
-              archive_mode = on
-              archive_command = 'test ! -f /var/lib/postgresql/9.5/grupo06/archivedir/\%f && cp \%p /var/lib/postgresql/9.5/grupo06/archivedir/\%f'
-          \end{spverbatim}
-      Veja que a pasta /var/lib/postgresql/9.5/grupo06/archivedir/ será criada, (ou crie com mkdir /var/lib/postgresql/9.5/grupo06/archivedir/), e nela ficará contido todos os arquivos log gerados pelos bancos de dados.
+      \begin{spverbatim}
+      archive_mode = on
+      archive_command = 'test ! -f /var/lib/postgresql/9.5/grupo06/archivedir/\%f && cp \%p /var/lib/postgresql/9.5/grupo06/archivedir/\%f'
+      \end{spverbatim}
+
+     Depois, crie a pasta do comando acima com:
+      \begin{spverbatim}
+      # mkdir /var/lib/postgresql/9.5/grupo06/archivedir/
+      \end{spverbatim}
+
+      Veja que a pasta /var/lib/postgresql/9.5/grupo06/archivedir/ será criada e nela ficará contido todos os arquivos log gerados pelos bancos de dados.
       Agora, temos que editar o arquivo /etc/postgresql/9.5/grupo06/pg\_hba.conf. Adicione a linha no final:
-          \begin{spverbatim}
-              host    replication     replication     10.1.2.20/32    md5
-          \end{spverbatim}
+      \begin{spverbatim}
+      host    replication     replication     10.1.2.20/32    md5
+      \end{spverbatim}
 
-          Essa linha permite que o banco em standby consiga se conectar com o primário para fazer a replicação.
+      Essa linha permite que o banco em standby consiga se conectar com o primário para fazer a replicação.
     \subsection{Fazer base backup}
-        Devemos fazer um base backup do servidor mestre para o escravo. Utilizaremos o comando pg\_basebackup.
-        Para isso, faça login na máquina do escravo, a dbslave2.
-        Primeiro, a pasta de dados do banco de dados que receberá o base backup deve estar vazia. Logo, apagaremos tudo dentro dela. Depois, utilizaremos o comando de base backup para se conectar no banco de dados mestre e fazer a cópia.
+        Devemos fazer um base backup do servidor mestre para o escravo. Utilizaremos o comando pg\_basebackup.\\
+        Para isso, faça login na máquina do escravo, a dbslave2.\\
+        Primeiro, a pasta de dados do banco de dados que receberá o base backup deve estar vazia. Logo, apagaremos tudo dentro dela. Depois, utilizaremos o comando de base backup para se conectar no banco de dados mestre e fazer a cópia.\\
         Rode o comando:
-          \begin{spverbatim}
-              rm /var/lib/postgresql/9.5/grupo06/* -r
-              pg_basebackup -h 10.1.2.10 -p 5434 -D /var/lib/postgresql/9.5/grupo06 -P -U replication --xlog-method=stream -R
-          \end{spverbatim}
+        \begin{spverbatim}
+        rm /var/lib/postgresql/9.5/grupo06/* -r
+        pg_basebackup -h 10.1.2.10 -p 5434 -D /var/lib/postgresql/9.5/grupo06 -P -U replication --xlog-method=stream -R
+        \end{spverbatim}
 
-          A flag -R no final, faz com que o arquivo recovery.conf seja gerado automaticamente no processo.
+        Ao ser pedido uma senha, digite 123456.\\
+        A flag -R no final, faz com que o arquivo recovery.conf seja gerado automaticamente no processo.
 
-    \subsection{Configuração do slave}
-        Na máquina escrava, edite o arquivo /etc/postgresql/9.5/grupo06/postgresql.conf, adicionando as mesmas linhas que fez na máquina mestre, como nos passos anteriores. É necéssario adicionar mais uma linha, na seção \textbf{Standby servers}, adicione a linha:
-          \begin{spverbatim}
-          	hot_standby = on
-          \end{spverbatim}
+    \subsection{Configurar o slave}
+        Na máquina escrava, edite o arquivo \verb|/etc/postgresql/9.5/grupo06/postgresql.conf|, adicionando as mesmas linhas que fez na máquina mestre, como nos passos anteriores. Isso é necessário pois quando o primário falhar, o secundário deve se comportar exatamente como o primário. Entretanto, é necéssario adicionar mais uma linha, na seção \textbf{STANDBY SERVERS}, adicione a linha:
+        \begin{spverbatim}
+        hot_standby = on
+        \end{spverbatim}
 
         Isso faz com que o banco escravo seja read-only e aceite apenas comandos de leitura.
 
