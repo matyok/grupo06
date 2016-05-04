@@ -115,7 +115,7 @@ O primeiro experimento, foi utilizar o RBE com apenas o banco primário ligado. 
 
 Esses dois experimentos, são feitos para caracterizar nosso servidor. O objetivo é medir a maior carga para a qual ele se comporta de forma consistente.
 
-Para isso, variamos os valores de carga entre 1000 e DESCUBRA, variando de 500 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que nos mostram até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
+Para isso, variamos os valores de carga entre 2000 e 4000 clientes, variando de 1000 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que nos mostram até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
 
 Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para simular essa "carga ótima" no servidor, causando um failover  manualmente (isto é, matando o banco de dados primário), enquanto promovemos o banco de dados secundário, para ver em quanto tempo nosso servidor consegue se recuperar e voltar a ficar ativo.
 
@@ -124,46 +124,48 @@ Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para si
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
 
-Seguem os gráficos gerados pela execução do RBE para cada experimento
+Seguem os gráficos gerados pela execução do RBE para cada experimento.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp1/plot_browsin}
+Figura 1: WIPSb por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 1
+\end{center}
+Vemos que 4000 usuários teve uma boa consistência durante o meio do experimento mas uma grande queda no final, assim como o de 3000. O de 4000 também houve uma variação grande por volta dos 15 segundos.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp1/plot_ordering}
+Figura 2: WIPSo por tempo para cada carga simulada pelo RBE no perfil Ordering no experimento 1
+\end{center}
+Pelo gráfico, podemos ver que oteste com 3000 clientes teve o melhor desempenho no geral. Até a metade, 2000 usuários estava melhor mas depois 3000 foi crescendo e manteve uma boa taxa até o final.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp1/plot_shopping}
+Figura 3: WIPS por tempo para cada carga simulada pelo RBE no perfil Shopping no experimento 1
+\end{center}
 
-Experimento 1: sem replicação.
-- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
-Réplica primária ativa, réplica secundária desligada.
+Neste gráfico, ficou evidente o melhor desempenho da simulação com 3000 clientes sobre as duas outras. Uma melhor taxa de WIPS foi obtida durante praticamente todo o experimento.
 
-Experimento 2: sobrecarga gerada pela replicação.
-- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
-Réplica primária ativa, réplica secundária  ativa como hot standby.
+Esses três gráficos combinados, nos dá indícios de que 3000 usuários talvez seja o melhor número a ser utilizado, pois tem taxas de WIPS mais altas e estáveis que as outras testadas.
 
-Os  experimentos  1 e  2  devem  ser  utilizados para  caracterizar  o
-desempenho  (operações/s  e tempo  de  resposta)  em função  da  carga
-aplicada.
+Agora, analisaremos os dados do experimento 2.
 
-O  objetivo é  encontrar  a carga  que produz  o  melhor resultado  de
-desempenho. Essa carga deve ser empregada no experimento 3.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp2/plot_browsin}
+Figura 4: WIPSb por tempo para cada carga simulada pelo RBE no perfil Browsing no experimento 2
+\end{center}
 
+O gráfico indica que um melhor desempenho no geral para 4000 clientes, porém, há uma grande queda no final, que pode indicar problemas devido a alta carga.
 
-Experimento 3: injeção de falha no primário.
-- Cargas: WIPSb (browsing), WIPS (shopping) e WIPSo (ordering).
-Replicado, com falha  do primário e promoção manual  do secundário.  Com
-falha  injetada  aproximadamente  na  metade da  duração  do
-experimento.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp2/plot_ordering}
+Figura 5: WIPSo por tempo para cada carga simulada pelo RBE no perfil Ordering no experimento 2
+\end{center}
 
-O objetivo  do experimento 3  é medir o período  em que o  sistema não
-está disponível: quanto menor, melhor.  Realizem um número suficiente de
-experimentos  que permita  que o  grupo  argumente que  o resultado  é
-confiável  (reprodutível)  e  discuta   as  potenciais  causas  para  a
-indisponibilidade.
+Vemos um melhor desempenho de 3000 clientes no geral, que manteve uma boa média durante todo o experimento e se manteve no mesmo nível de WIPS para 4000 clientes na segunda metade do experimento.
 
-- Think Time (TT)  deve ser otimizado  para  obtenção  de  melhor  desempenho.
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp2/plot_shopping}
+Figura 6: WIPS por tempo para cada carga simulada pelo RBE no perfil Shopping no experimento 2
+\end{center}
 
-- Banco  de  Dados: utilizar o dump fornecido.
-
-Configuração para execução:
-
-rbes em um ou mais nós do  bloco, tpc-w (tomcat) e haproxy no servidor
-dedicado  a cada  grupo  e bancos  de dados  em  seus respectivos  nós
-(dbmaster, dbslave ou dbmaster2, dbslave2).
-
+Podemos ver que 4000 clientes mantiveram uma taxa de WIPS melhor durante boa parte do experimento, mas existiu uma grande queda dos WIPS na segunda metade, assim como no perfil de Browsing, o que pode indicar que essa carga já está alta e sobrecarregando o servidor.
 
 \section{Conclus\~ao}
 
