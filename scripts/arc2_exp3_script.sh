@@ -1,0 +1,63 @@
+#!/bin/bash
+
+alias sshdbslave2='ssh ra137036@dbslave2'
+
+RBE_CMD='java -Xmx8196m -cp /nfs/rbe/rbe.jar rbe.RBE'
+
+for i in $(seq 3)
+do 
+	echo "Iniciando run $i"
+	echo; echo; echo;
+
+	## - Desligar HAPROXY
+	sudo service haproxy stop
+
+	## - Subir banco de dados primário
+	echo "/===--- [Master Script]: subindo o banco primário ---===/"
+	ssh ra137036@dbmaster2 'python dumpmaster.py'
+
+	echo; echo; echo
+
+	## - Subir slave como secundário em hot standby
+	echo "/===--- [Master Script]: Subindo o secundário como hot standby ---===/"
+	ssh ra137036@dbslave2 './reconfslave.sh'
+
+	echo; echo; echo
+
+	## - Ligar HAPROXY
+	sudo service haproxy start
+
+	## - Reiniciar o tomcat
+	sudo service tomcat7 restart
+
+	## - Iniciar RBE
+	echo "/===--- [Master Script]: Chamando o RBE ---===/"
+
+	EB_VAL="rbe.EBTPCW"$i"Factory"
+
+	OUT_FILE="exp3/out-rbe-file${i}.m"
+	ssh ra137036@cbn7 "$RBE_CMD -EB $EB_VAL 2000 -OUT $OUT_FILE -MAXERROR 0 -WWW http://cbn6.lab.ic.unicamp.br:8080/tpcw/ -RU 5 -MI 90 -RD 5 -DEBUG 10 > exp3/rbe_output${i}.txt" &
+
+	echo; echo; echo
+
+	echo "Time until shutting down primary... 45"
+	for i in $(seq 45)
+	do
+		sleep 1
+		echo "Time until shutting down primary... $[45-$i]"
+	done
+
+	## - Parar o primeiro banco
+	echo "/===--- [Master Script]: Parando o banco primário ---===/"
+	ssh ra137036@dbmaster2 'pg_ctlcluster 9.5 grupo06 stop -m fast'
+
+	echo; echo; echo
+
+	## - Promove o segundo banco a primário
+	echo "/===--- [Master Script]: Promovendo o segundo banco a primário ---===/"
+	ssh ra137036@dbslave2 'pg_ctlcluster 9.5 grupo06 promote'
+
+	sleep 90
+	echo "Terminando run $i em 20 segundos..."
+	sleep 20
+done
