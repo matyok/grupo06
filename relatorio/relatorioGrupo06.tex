@@ -23,7 +23,7 @@
 \begin{document}
 
 %%% PÁGINA DE CAPA %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+%
 % Número do relatório
 \TRNumber{02}
 
@@ -71,33 +71,55 @@ Matheus Yokoyama Figueiredo \and Pedro Rodrigues Grij{\'o}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{abstract} 
+\begin{abstract}
 \setlength{\parindent}{4ex}
-
+Utilizamos o benchmark TPC-W, que modela uma livraria online, atrav\'es de um ambiente controlado, para simular atividades num servidor WEB. Em conjunto com o simulador RBE, que gera tr\^es diferentes perfis de carga (Shopping, Ordering e Browsing), pudemos checar o desempenho do servidor instalado num cluster no IC, ao vermos o n\'umero de WIPS (WEB Interactions per Second) gerados por diferentes cargas.
+O relat\'orio refere-se a segunda parte do projeto da disciplina de MC437 (Projeto de Sistemas de Informa\c{c}\~ao) e tem como objetivo realizar testes com dois bancos de dados diferentes, sendo um primário que é replicado para um secundário em hot-standby, testando quais as melhores cargas que o primário consegue atender e depois medir o tempo de recuperação quando o primário é desligado e o secundário promovido.
 \end{abstract}
 
 \section{Introdução}
+Este trabalho \'e um relat\'orio da segunda parte do projeto da displina, que consistiu em preparar além da m\'aquina remota com o servidor Tomcat, utlizar duas máquinas desse cluster com instâncias do PostgreSQL, uma com um banco de dados atuando como primário e outra atuando como um banco secundário em hot-standby para integrar todas essas funcionalidades e fazer um site de compras com dados gerados aleatoriamente.
+
+    Também foi instalado na máquina o aplicativo TPC-W que \'e um benchmark de transa\c{c}\~oes web, que é uma aplica\c{c}\~ao Java. Para utilizar o TPC-W, foi utlizado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, que implementa uma loja de livros.
+
+    O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP que seria feito por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
+
+    Também utilizamos o HAProxy, que atua como um proxy para aplicações baseadas em TCP e HTTP. Ele oferece alta disponibilidade e balanceamento de carga para servidores web. Sua função nesse trabalho é assim que detectar que o banco primário falhou, redirecionar as requisições feitas para o antigo banco secndário que deve ser promovido a banco primário.
+
+    O TPC-W gera um n\'umero, o WIPS (Web Interactions per Second, n\'umero de itera\c{c}\~oes Web por segundo). O fluxo de trabalho é gerado pelo RBE e pode ser de tr\^es tipos diferentes de perfis. O perfil de compras (\textit{shopping}), onde 80\% das a\c{c}\~oes são de consulta e 20\% de escrita no banco de dados. O perfil de navega\c{c}\~ao (\textit{browsing}), tem 95\% das a\c{c}\~oes de leitura e 5\% de escrita. J\'a o perfil de compras (\textit{ordering}) tem metades de suas opera\c{c}\~oes de leitura e a outra metade de escrita.
+
+    Rodamos três experimentos diferentes, o primeiro apenas com o banco primário ativo, o segundo com o primário ligado e o secundário ligado em hot-standby e o terceiro onde na metade do experimento, o primário era desativado para que o secundário pudesse ser promovido.
+
 \setlength{\parindent}{4ex}
 
 
 \section{Condições Experimentais}
 \setlength{\parindent}{4ex}
-\begin{itshape}
-	 Nesta se\c{c}\~ao ser\~ao descritas as configura\c{c}\~oes de hardware e software utilizadas nos experimentos, os par\^ametros dos RBEs e como foi feita a sincroniza\c{c}\~ao das m\'aquinas.
-	
-	Os experimentos foram feitos no cluster disponilizado pelo Instituto de Computa\c{c}\~ao(IC). A m\'aquina utilizada possui a seguinte configura\c{c}\~ao: sistema operacional Ubuntu 14.04, CPU Intel(R) Core(TM)2 Quad CPU 2.66GHz e mem\'oria RAM de 4GB e 1333 MHz.
+     Nesta se\c{c}\~ao ser\~ao descritas as configura\c{c}\~oes de hardware e software utilizadas nos experimentos.
 
-	Utilizamos o servidor web Apache Tomcat vers\~ao 7 e PostgreSQL vers\~ao 9.5.1.
+     Nesta fase, contamos com quatro máquinas, todas iguais e fornecidas pelo Instituto de computação.
 
-\end{itshape}
+     A primeira, chamada CBN6, é onde está instalado o HAProxy X.XX, Tomcat versão 7 e TPC-W. Ela que atua como servidor web.
+
+     Duas máquinas, a dbmaster2 e dbslave2, é onde ficam os banco de dados primário e secundário, respectivamente. Também tem instalados o PostgreSQL vers\~ao 9.5.1.
+
+     Já o RBE foi rodado a partir de outra máquina, a CBN 7.
+
+     Todas as máquinas tem a mesma configuração: sistema operacional Ubuntu 14.04, CPU Intel(R) Core(TM)2 Quad CPU Q8400 2.66GHz e mem\'oria RAM de 4GB e 1333 MHz.
 
 \section{Metodologia de Pesquisa}
 \setlength{\parindent}{4ex}
-\begin{itshape}
-Para analisar a disponibilidade de nosso servidor, fizemos um script que executa o comando do RBE diversas vezes variando o n\'umero de usu\'arios para cada perfil. Por exemplo, Fizemos o RBE simular 100 usu\'arios com o perfil Shopping e medimos o WIPS m\'edio. Variamos o n\'umero de usu\'ario de 100 a 4000 incrementando esse n\'umero em 100 a cada vez. Tamb\'em, utilizamos os valores de \textit{Ramp-up Time} em 5s, \textit{Measurement Interval} em 30s, \textit{Ramp-down Time} em 5s e o resto dos par\^ametros no valor padr\~ao.
-\end{itshape}
+Foi necessário executar três diferentes experimentos. Cada experimento consiste em rodar o RBE para simular uma carga no servidor e avaliarmos as medições feitas.
 
-Valores utilizados - Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s
+O primeiro experimento, foi utilizar o RBE com apenas o banco primário ligado. No segundo experimento, estavam ligados os bancos primários e o secundário em hot-standby.
+
+Esses dois experimentos, são feitos para caracterizar nosso servidor. O objetivo é medir a maior carga para a qual ele se comporta de forma consistente.
+
+Para isso, variamos os valores de carga entre 1000 e DESCUBRA, variando de 500 em cada iteração, isso para cada perfil de usuário descrito anteriormente. Assim, podemos fazer gráficos que nos mostram até qual carga o servidor manteve um bom nível de WIPS ao longo de todo o teste (que dura 100s no total).
+
+Com esse valor achado, utilizamos esse valor de carga e utilizamos o RBE para simular essa "carga ótima" no servidor, causando um failover  manualmente (isto é, matando o banco de dados primário), enquanto promovemos o banco de dados secundário, para ver em quanto tempo nosso servidor consegue se recuperar e voltar a ficar ativo.
+
+É importante ressaltar que sempre rodamos o RBE de outra máquina remota (CBN7), diferente de nosso servidor, e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
 
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
