@@ -272,32 +272,98 @@
 
         Isso faz com que o banco escravo seja read-only e aceite apenas comandos de leitura.
 
-\section{Configuração do haproxy}
-    
+\section{Configuração do HAProxy}
+
+    \subsection{Instalação}
+
+        Para instalar o HAProxy, tivemos apenas que adicionar ao nosso ambiente de execução o repositório apt-get relacionado e rodar o comando apt-get install apropriado, como segue:
+
+        \begin{spverbatim}
+        # sudo add-apt-repository ppa:vbernat/haproxy-1.6
+        # sudo apt-get update
+        # sudo apt-get install haproxy
+        \end{spverbatim}
+
+        Podemos verificar que a versão correta foi então instalada com o seguinte comando:
+
+       \begin{spverbatim}
+        # haproxy -v
+        \end{spverbatim}
+
+    \subsection{Configuração}
+
+        Uma vez instalado o HAPROXY, temos ainda de configurá-lo de modo a:
+
+        \begin{enumerate}
+        \item Informá-lo da existência de dois endereços de destino distintos
+        \item Permitir que seu backend escolha o endereço de destino adequado de acordo com o resultado de um health-check periódico de cada um dos alvos
+        \item //Requisitar que o HAProxy escreva mensagens de log relevantes em /var/log
+        \end{enumerate}
+
+        Para tal, é necessário criar em \verb|/etc/haproxy| um arquivo haproxy.cfg com parâmetros adequados.
+        A seguir, comentamos o conteúdo de um arquivo mínimo desse tipo que é capaz de prover o requerido em (1) e (2):
+
+       \begin{spverbatim}
+        listen psql
+
+       bind    *:4002
+
+       mode  tcp
+
+       option  pgsql-check user haproxy
+
+       server  replicaOne  10.1.2.10:5434 check
+
+       server  replicaTwo  10.1.2.20:5434 check backup
+        \end{spverbatim}
+
+        A linha 02 garante que toda a comunicação ocorrendo através da porta 4002 deverá ser interceptada.
+
+        A linha 03 indica  que o haproxy deverá funcionar como um tcp proxy – isto é, transparentemente interceptando e redirecionando pacotes do tipo TCP.
+
+        A linha 04 configura o haproxy para fazer contatos de health-check com os bancos replicados usando o usuário haproxy.
+
+        As linhas 05 e 06 definem as réplicas do banco como os dois destinos possíveis para os pacotes TCP interceptados. Além disso, a opção “backup” da linha 06 garante que o servidor replicaTwo não seja contatado antes que replicaOne falhe.
+
+        Por fim, as opções “check” ocorrendo nas duas linhas indicam que haproxy deverá verificar periodicamente a disponibilidade dos dois bancos, alternando o destino dos pacotes interceptados de acordo com essa avaliação.
+
+    \subsection{Startup, restart e shutdown}
+
+        Para realizar o startup, restart e shutdown do HAProxy, respectivamente, basta usar o comando “service” do Linux, como segue:
+
+        \begin{spverbatim}
+        sudo service haproxy start
+        sudo service haproxy restart
+        sudo service haproxy stop
+        \end{spverbatim}
+
+
 \section{Automatização da coleta de dados}
-	
+
+            Todos os scripts mencionados nessa seção estão na pasta \verb|scripts|.
+
 	A segunda parte do experimento foi dividida em 3 partes. Para executar os testes da primeira parte, foram gerados os scripts \verb|arc2_exp1_script.sh| e \verb|arc2_exp_analise.sh| que devem ser executados da seguinte forma:
-	
+
  	\begin{spverbatim}
-	      ./arc2_exp1_script.sh 
-	      ./arc2_exp_analise.sh 1
-	\end{spverbatim} 
+	# ./arc2_exp1_script.sh
+	# ./arc2_exp_analise.sh 1
+	\end{spverbatim}
 \noindent
 \newline
-O argumento passado para o 2o script é simplesmente para geração de arquivos com o nome desejado.
+O argumento passado para o segundo script é simplesmente para geração de arquivos com o nome desejado.
 \newline
 
 Para executar os testes da segunda parte, foi gerado o script \verb|arc2_exp2_script.sh|. Seguem os comandos para executar:
 	\begin{spverbatim}
-	      ./arc2_exp2_script.sh 
-	      ./arc2_exp_analise.sh 2
-	\end{spverbatim}   
+	# ./arc2_exp2_script.sh
+	# ./arc2_exp_analise.sh 2
+	\end{spverbatim}
 \noindent
-\newline 	
+\newline
 Para executar os testes da terceira parte, foi gerado o script \verb|arc2_exp3_script.sh|. Seguem os comandos para executar
 	\begin{spverbatim}
-	      ./arc2_exp3_script.sh 
-	      ./arc2_exp_analise.sh 3
-	\end{spverbatim}   
+	# ./arc2_exp3_script.sh
+	#./arc2_exp_analise.sh 3
+	\end{spverbatim}
 
 \end{document}
