@@ -81,7 +81,7 @@ O relat\'orio refere-se a segunda parte do projeto da disciplina de MC437 (Proje
 Este trabalho \'e um relat\'orio da segunda parte do projeto da disciplina MC437 - Projeto de Sistemas de Informação. Essa parte foi constituída pela preparação de uma m\'aquina remota com um servidor  webApache Tomcat, utlização de duas máquinas remotas com instâncias de bancos de dados PostgreSQL, uma com um banco atuando como primário e outra com um banco secundário em hot-standby, utilizado para integrar todas essas funcionalidades e fazer um site de compras com dados gerados aleatoriamente.
 
     Também foi instalado na máquina do web server o aplicativo TPC-W, um benchmark de transa\c{c}\~oes web. Para fazer uso do TPC-W, foi utlizado o RBE (Remote Browser Emulator), que emula conjuntos de clientes que acessam o lado servidor do TPC-W, sendo que este implementa uma livraria digital.
-    
+
     O RBE \'e um simulador escrito completamente em Java que simula o tr\'afego HTTP gerado por um usu\'ario que estivesse acessando o site atrav\'es de um navegador.
 
     Também utilizamos o HAProxy, que atua como um proxy para aplicações baseadas em TCP e HTTP. Ele oferece alta disponibilidade e balanceamento de carga para servidores web. Neste trabalho, sua função é de detectar falha do banco primário e redirecionar as requisições feitas para o banco secundário, que deve ser promovido a banco primário.
@@ -119,7 +119,7 @@ Para isso, variamos os valores de carga entre 2000 e 4000 clientes, variando de 
 
 O valor encontrado foi utilizado no RBE para simular essa "carga ótima" no servidor, causando um failover manualmente (isto é, matando o banco de dados primário), enquanto o banco de dados secundário era promovido, para ver em quanto tempo o servidor conseguia se recuperar e voltar a ficar ativo.
 
-É importante ressaltar que o RBE sempre foi RBE de outra máquina remota (CBN7), diferente de da máquina do servidor(CBN6), e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
+É importante ressaltar que o RBE sempre foi rodado de outra máquina remota (CBN7), diferente de da máquina do servidor(CBN6), e que os parâmetros utilizados foram Ramp-Up Time: 5s, Ramp-Down Time: 5s e Measurement Interval: 90s. O valor de máximo número de erros tolerados foi colocado em 0. Todos os outros valores são os padrões do RBE.
 
 \section{An\'alise e Resultados}
 \setlength{\parindent}{4ex}
@@ -136,7 +136,7 @@ Nota-se que o experimento com 4000 clientes teve uma boa consistência entre 30 
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_ordering}
 Figura 2: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Ordering do experimento 1
 \end{center}
-Pelo gráfico, é visível que o teste com 3000 clientes obteve o melhor desempenho no geral. Até 50s, o desempenho era melhor com 2000 clientes, porém após esse tempo o teste com 3000 clientes obteve uma quantidade maior de WIPS e se manteve consistentemente melhor que os testes com 2000 e 4000 clientes. 
+Pelo gráfico, é visível que o teste com 3000 clientes obteve o melhor desempenho no geral. Até 50s, o desempenho era melhor com 2000 clientes, porém após esse tempo o teste com 3000 clientes obteve uma quantidade maior de WIPS e se manteve consistentemente melhor que os testes com 2000 e 4000 clientes.
 
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/exp1/plot_shopping}
@@ -168,8 +168,27 @@ O melhor desempenho geral foi para 3000 clientes, pois essa carga manteve uma bo
 Figura 6: WIPS por tempo(s) para cada carga simulada pelo RBE no perfil Shopping do experimento 2
 \end{center}
 
-Este resultado se assemelha ao do perfil Browsing. 4000 clientes possui bom desempenho até ~70s do experimento, quando sofre queda de WIPS, o que indica que esta alta carga sobrecarrega o servidor. Como no perfil Browsing, a carga mais estável é de 3000 clientes.
+Este resultado se assemelha ao do perfil Browsing. 4000 clientes possui bom desempenho até aproximadamente 70s do experimento, quando sofre queda de WIPS, o que indica que esta alta carga sobrecarrega o servidor. Como no perfil Browsing, a carga mais estável é de 3000 clientes.
+
+Definimos então rodar o experimento três (com failover) utilizando uma carga de 3000 clientes.
+
+\begin{center}
+\includegraphics[width=15cm, height=10cm]{images/exp3/plot_exp3}
+Figura 7: WIPS por tempo(s) para cada perfil simulado pelo RBE no experimento 3
+\end{center}
+
+Este gráfico indicas alguns resultados interessantes. Podemos ver que não houve queda de desempenho nos perfis de browsing e shopping, mesmo após o failover. Isso ocorreu provavelmente pois nosso script finaliza o processo do banco de dados primário (causando o failover) e logo em seguida já promove o secundário que rapidamente assume como primário, pois o HAProxy é rápido em notar que o primário falhou e já redireciona as requisições para o secundário.
+Mas notamos que no perfil Ordering, onde tem muito mais instruções de escrita, que são muito custosas, a carga de 3000 causou falhas no servidor. Por, utilizamos uma carga de 2500 e conseguimos resultados satisfatórios. Vemos que o failover ocorre perto da marca de 45s e que o servidor se recupera por volta de 49s, o que da um pouco menos de quatro segundos de recuperação.
 
 \section{Conclus\~ao}
+Concluímos que os experimentos foram bem sucedidos.
+
+Os experimentos um e dois, conseguiram prever com certa precisão a melhor carga a ser utilizada no experimento três, de 3000 clientes.
+
+O experimento três teve bastante sucesso nos perfis de browsing e shopping, onde o failover não fez cair o número de WIPS do servidor, pois a troca de banco de dados foi quase que imediata. Já no perfil de ordering, houve por volta de quatro segundos de tempo de recuperação para o servidor voltar a responder requisições, o que consideramos um tempo bastante razoável e que podemos tentar melhorar no futuro.
+
+Infelizmente, tivemos problemas no experimento três e não tivemos tempo de rodar o experimento várias vezes para compararmos os resultados, mas ficamos bastante satisfeitos com o resultado demonstrado.
+
+Tabém falhamos em conseguir apresentar os dados de WIRT (WEB Interaction Response Time) o que seria um dado muito bom de ser demonstrado, mas nossa coleta de dados falhou em consegui-los, obtínhamos sempre os mesmos pontos. Pretendemos consertar isso para o próximo estágio do projeto.
 
 \end{document}
