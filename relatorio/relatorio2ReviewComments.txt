@@ -1,0 +1,64 @@
+Comentário feito no papel do relatório:
+Faltou WIRTS (Esquecemos de comentar as dificuldades com o professor)
+Análise das cargas foi bem feita
+Precisa melhorar a escrita
+
+Introdução:
+- Grande parte da introdução deveria estar numa seção a parte intitulada "Arquitetura de software da solu??o" ou algo semelhante.
+- Precisa explicar melhor a parte que explica o que fazem o TPC-W e o RBE. Talvez seja interessante fazer uma tabela.
+
+Condições Experimentais:
+- Professor sentiu falta de uma figura na parte de Condições experimentais
+
+Metodologia de Pesquisa:
+- Faltou uma tabela que apresentasse os parâmetros utilizados no RBE. Explicados no texto não ficam tão evidentes.
+
+Análise e Resultados:
+- Não executamos o 3o experimento mais de uma vez por que o mesmo só funcionou próximo do prazo de entrega.
+- Precisa explicar melhor como fazemos a parada e a troca dos bancos
+
+Comentários retirados do ggte:
+
+**** Grupo 06:
+
+ - "a maior carga para a qual  ele se comporta de forma consistente":
+    na realidade consistência  não é o foco,  mas sim disponibilidade,
+    que preclui um tempo de resposta aceitável para os clientes.
+
+ - "Todos os outros valores são os padrões do RBE." Isto significa TT = 1.0?
+
+ - Refiram-se  aos gráficos  pelo  seu nome:  "Neste  gráfico" ->  "O
+    gráfico da Figura X"
+
+ - Não   é   tão   "evidente"   o   melhor   desempenho   com   certa
+    configuração. Parece que vocês querem demonstrar que 3000 clientes
+    é uma  carga interessante de se  avaliar. Isto não é  um problema,
+    mas neste caso os resultados  reafirmam o sentimento de vocês, mas
+    não mostram nada tão "claramente" ou "evidentemente".
+
+ - Seria interessante apresentar os resultados dos
+    experimentos 1 e 2 de forma  que fosse fácil compará-los. Pode ser
+    feito através de gráficos ou até de uma tabela comparativa.
+
+ - A pergunta de pesquisa qual é o custo da replicação não é respondida.
+
+ - Estranho  que não  se tenha  observado  nenhum efeito  de queda  de
+   desempenho  com a  queda do  servidor primário  para duas  das três
+   cargas experimentadas. Explicação?
+
+ - "Por,  utilizamos  uma  carga  de  2500  e  conseguimos  resultados
+   satisfatórios.": ????
+
+ - "Vemos que o failover ocorre perto da marca de 45s": a falha, não o
+   failover.
+
+ - Conclusão  sincera, até  porque de  fato  se espera  um impacto  em
+   desempenho, em particular em tempo  de resposta, por conta da falha
+   de um servidor
+
+ - Não ficou clara a configuração de  tolerância a falhas do HAProxy e
+   de criação de conexões no JDBC do Tomcat. Estes parâmetros, que são
+   os timeouts empregados, são muito relevantes para a perda ou não de
+   desempenho por conta de operações não concluídas no período entre a
+   queda de um banco e completa ativação da sua réplica.
+
