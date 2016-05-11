@@ -77,3 +77,8 @@ Logbook - Grupo 06
 	- Escrita do manual e relatorio da parte 2(Pedro)
 	- Streaming replication funcionando corretamente(Gabriel e Joao)
 	- Configurando haproxy, porta 4002(porta do tomcat foi modificada para funcionar)(Matheus e Lucas)
+
+2016/05/11
+	- Estudado e feito pg_rewind no banco local do cbn6, falta fazer entre master e slave (Joao)
+	- Avaliou erros no relatorio e fez log das mudanças(Pedro)
+	- Consertaram o tomcat (Matheus, Lucas e Gabriel)
