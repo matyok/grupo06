@@ -322,7 +322,7 @@ Pelo gráfico, vemos que após a primeira queda, por volta de 32s, o sistema vol
 Figura 12: WIPS por tempo(s) para Think-Time de 0.3s testado no perfil de Shopping no experimento completo
 \end{center}
 
-Novamente, a primeira queda ocorreu por volta de 29s e se recuperou totalmente perto dos 37s. Já a segunda queda ocorreu próxima aos 65s e a recuperação ocorreu em 78s. O tempo inoperante ficou em torno de 21s e o tempo operante em 79s. Portanto, pela equação (1), o a disponibilidade ficou em torno de 79\%.
+Novamente, a primeira queda ocorreu por volta de 29s e se recuperou totalmente perto dos 37s. Já a segunda queda ocorreu próxima aos 65s e a recuperação ocorreu em 78s. O tempo inoperante ficou em torno de 21s e o tempo operante em 79s. Portanto, pela equação (1), a disponibilidade ficou em torno de 79\%.
 
 \begin{center}
 \includegraphics[width=15cm, height=10cm]{images/completo/plot_ordering_TT03.png}
@@ -354,7 +354,11 @@ Os experimentos um e dois, conseguiram prever com certa precisão a melhor carga
 
 O experimento três teve bastante sucesso nos perfis de browsing e shopping, onde a falha não fez cair o número de WIPS do servidor, pois a troca de banco de dados foi quase que imediata. Já no perfil de ordering, houve por volta de quatro segundos de tempo de recuperação para o servidor voltar a responder requisições, o que consideramos um tempo bastante razoável.
 
-Por fim, o experimento completo foi um sucesso. Nosso sistema conseguiu se recuperar adequadamente e apresentou uma disponibilidade boa, considerando que temos apenas um banco de dados em hot-standby e não tínhamos conhecimento sobre as ferramentas utilizadas ao iniciar o projeto.
+Por fim, o experimento completo foi um sucesso. Nosso sistema conseguiu se recuperar adequadamente e apresentou uma disponibilidade boa, considerando que temos apenas um banco de dados em hot-standby e não tínhamos conhecimento sobre as ferramentas utilizadas ao iniciar o projeto, o que nos fez gastar muito tempo para aprendermos a utilizar as ferrementas e fazermos tudo funcionar, ao invés de gastarmos mais tempo em como melhorar a disponibilidade ou desempenho do sistema.
+
+É claro que nenhuma empresa grande acharia disponibilidade perto de 80\% um valor razoável, grandes sites como Google ou Amazon, tem disponibilidade de 99.9999...\%, mas chegamos em bons valores dada as dificuldades apresentadas acima.
+
+O desempenho do experimento completo com Think-Time de 0.3s foi em média por volta de 500 WIPS para os três perfis. Comparando com os valores de WIPS obtidos nos experimentos anteriores, vemos que 500 foi um ótimo valor. Quase nenhum gráfico do experimento 1 e 2 mostra valores melhores. Na figura 7, do experimento 3, vemos que a carga ótima ficou em torno de 500 WIPS também, mostrando que a carga de 1000 e Think-Time de 0.3s foi uma boa escolha para observarmos.
 
 \bibliography{bib/relatorioGrupo06}{}
 \bibliographystyle{ieeetr}
