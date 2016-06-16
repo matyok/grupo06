@@ -93,7 +93,7 @@ d = web\_interactions\_per\_second(WIPS)
 Onde tempo\_em\_operação é o período de tempo em que o sistema
 está apto a responder requisições de seus usuários, tempo\_inoperante é o período de tempo em que o sistema é incapaz de
 produzir respostas corretas para as requisições realizadas pelos
-usuários e, finalmente, web\_interactions\_per\_second é o número de requisições web por segundo que ocorrem no sistema. Num sistema ideal, $a = 1$ e $d \rightarrow \infty$.
+usuários e, finalmente, web\_interactions\_per\_second é o número de requisições web por segundo que ocorrem no sistema. Num sistema ideal, a = 1 e d \rightarrow \infty.
 
 Durante a elaboração do projeto, foram implementadas e testadas maneiras de recuperação em caso de falhas num banco de dados. A disponibilidade, dada pela equação (1), indica que o tempo em que o sistema fica inoperante deve ser o menor possível para que essa seja alta.
 

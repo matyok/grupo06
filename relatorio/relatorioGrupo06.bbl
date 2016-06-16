@@ -1,0 +1,20 @@
+\begin{thebibliography}{1}
+
+\bibitem{TPCW}
+``{TPC} benchmark {W}.'' \url{http://www.tpc.org/tpcw/}.
+
+\bibitem{SR}
+``Streaming {R}eplication.''
+  \url{https://wiki.postgresql.org/wiki/Streaming_Replication}.
+
+\bibitem{RBE}
+``Remote {B}rowser {E}mulator.''
+  \url{http://www.cs.wm.edu/~esmirni/tpcw_codes/RBE.java}.
+
+\bibitem{haproxy}
+``H{AP}roxy.'' \url{http://www.haproxy.org/}.
+
+\bibitem{postgresql}
+``Postgresql.'' \url{https://www.postgresql.org/}.
+
+\end{thebibliography}
