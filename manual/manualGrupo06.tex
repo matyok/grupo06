@@ -130,6 +130,18 @@
         # invoke-rc.d tomcat7 restart
         \end{spverbatim}
 
+        \subsubsection{Arco 03} 
+        
+        Devido a problemas relacionados à pool de conexões quando há uma queda de um dos bancos, houve a necessidade de se checar a validade de cada conexão do pool. Para isto, novas configurações foram usadas para o Tomcat JDBC, como podem ser vista na Figura 1 acima. Nota-se que as flags de log foram usadas apenas por motivos de depuração.
+       
+        \begin{center}
+        \begin{figure}
+            \centering
+          \includegraphics[width=14cm,keepaspectratio=true]{imagens/config_tomcat.png}
+	        	        Figura 1: Configurações do Tomcat no Arco 03
+        \end{figure}
+	\end{center}
+        
         \subsection{TPC-W}
 
         As aplicações implantadas no Tomcat são configuradas em \$CATALINA\_BASE/webapps. Para ter permissão de criar aplicações nesta pasta, o usuário tem que ser do grupo tomcat7, para fazer isso, no linux:
@@ -194,7 +206,7 @@
     # ssh dbslave2
     \end{spverbatim}
 
-    As máquinas já vieram com a instalação do Postgres 9.5.1.
+    As máquinas já vieram com a instalação do PostgreSQL 9.5.1.
 
     As pastas de dados para os bancos de dados em ambas as máquinas fica em \verb|/var/lib/postgresql/9.5/grupo06/|.
 
@@ -271,6 +283,24 @@
         \end{spverbatim}
 
         Isso faz com que o banco escravo seja read-only e aceite apenas comandos de leitura.
+        
+    \subsection{Arco 03}
+    
+        Para as configurações de replicação do postgres, foi adicionado ao arquivo recovery.conf a seguinte linha:
+        \begin{spverbatim}
+        recovery_target_timeline = 'latest'
+        \end{spverbatim}
+    
+        Assim, após a queda, promoção e possíveis correções de consistência pelo \verb|pg_rewind|, o banco que agora seria o secundário seguiria pegando na mais nova timeline criada pelo banco promovido, agora master.
+    
+    
+    Para habilitar o \verb|pg_rewind|, precisamos fazer modificações no arquivo
+    
+    \verb|/etc/postgresl/9.5/grupo06/postgresql.conf| das duas máquinas, dbmaster2 e dbslave2. Adicionamos na seção WRITE AHEAD LOG a linha:
+        
+        \begin{spverbatim}
+        wal_log_hints = on
+        \end{spverbatim}
 
 \section{Configuração do HAProxy}
 
@@ -337,6 +367,20 @@
         sudo service haproxy stop
         \end{spverbatim}
 
+    \subsection{Arco 03}
+
+    Como a detecção de falhas foi passada para um novo script(descrito na seção de Detector de falhas abaixo), o check do haproxy se tornou obsoleto, servindo apenas para checagem na GUI no site disponibilizado pelo haproxy.
+
+Então as configurações de haproxy foram separadas em dois arquivos, onde um deles aponta para o dbmaster2 e outro para dbslave2. Quem ficou resposável pela troca de configuração e religar o haproxy também ficou por parte do detector de falhas.
+
+
+\section{Detector de falhas}
+
+	Para a implementação do detector de falhas bolamos um script em bash que executa uma consulta em loop dos status dos banco de dados. Ao detectar que algum dos bancos de dados caiu ele automaticamente, se for o primário, altera as configurações do haproxy e realiza a promoção do banco de dados secundário para primário e restaura o banco que estava indisponível como secundário. Para a execução do script deve-se estar logado com um usuário pertencente ao grupo e executar o seguinte comando:
+
+       \begin{spverbatim}
+# ./health_checker.sh
+        \end{spverbatim}
 
 \section{Automatização da coleta de dados}
 
@@ -366,5 +410,27 @@ Para executar os testes da terceira parte, foi gerado o script \verb|arc2_exp3_s
 	# mkdir ../rbe/arc2/exp3/analise
 	# python ../rbe/ananlyse.py <outs_rbe>
 	\end{spverbatim}
+
+    \subsection{Arco 03}
+
+        O programa necessário para executar o experimento se encontra em /ra137036/grupo06/programas e para a execução verifique que não há nenhum \verb|health_checker.sh| rodando. Para executar o experimento do arco 3 basta executar o seguinte comando:
+    
+    \begin{spverbatim}
+# ./arc3.sh
+    \end{spverbatim}
+
+    
+    O script se encarrega de incializar os bancos de dados nas configurações iniciais, chamar o \verb|health_checker.sh| (Script que verifica os status do banco e realiza a promoção automática) e o \verb|killdb.sh| (Script que mata o primário 2 vezes) para a realização dos testes. Os arquivos de saída do rbe são encontrados na pasta /ra137036/arc3/ da máquina cbn7. Vá para o diretório /ra137036/grupo06/resultados e execute o seguinte script:
+    
+    \begin{spverbatim}
+# ./runAnalyse.sh
+    \end{spverbatim}
+
+    Para gerar os gráficos execute:
+    \begin{spverbatim}
+# gnuplot plot_graphs.plot
+    \end{spverbatim}
+
+     Os gráficos estarão disponíveis na pasta arc3/graphs.
 
 \end{document}
