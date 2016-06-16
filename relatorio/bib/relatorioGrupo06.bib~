@@ -1,0 +1,26 @@
+@misc{TPCW,
+    title = "{TPC} Benchmark {W}",
+    howpublished = "\url{http://www.tpc.org/tpcw/}"
+}
+
+@misc{SR,
+    title = "Streaming {R}eplication",
+    howpublished = "\url{https://wiki.postgresql.org/wiki/Streaming_Replication}"
+}
+
+@misc{RBE,
+    title = "Remote {B}rowser {E}mulator",
+    howpublished = "\url{http://www.cs.wm.edu/~esmirni/tpcw_codes/RBE.java}"
+}
+
+@misc{haproxy,
+    title = "H{AP}roxy",
+    howpublished = "\url{http://www.haproxy.org/}"
+}
+
+@misc{haproxy,
+    title = "PostgreSQL",
+    howpublished = "\url{https://www.postgresql.org/}"
+}
+
+

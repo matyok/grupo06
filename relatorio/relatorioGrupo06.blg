@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: relatorioGrupo06.aux
+The style file: ieeetr.bst
+Database file #1: bib/relatorioGrupo06.bib
+Warning--I didn't find a database entry for "tomcat"
+You've used 5 entries,
+            1876 wiz_defined-function locations,
+            496 strings with 3838 characters,
+and the built_in function-call counts, 527 in all, are:
+= -- 45
+> -- 5
+< -- 0
++ -- 5
+- -- 0
+* -- 17
+:= -- 56
+add.period$ -- 5
+call.type$ -- 5
+change.case$ -- 5
+chr.to.int$ -- 0
+cite$ -- 5
+duplicate$ -- 20
+empty$ -- 91
+format.name$ -- 0
+if$ -- 146
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 0
+newline$ -- 18
+num.names$ -- 0
+pop$ -- 30
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 30
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 6
+write$ -- 32
+(There was 1 warning)

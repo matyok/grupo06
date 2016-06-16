@@ -1,0 +1,48 @@
+@misc{TPCW,
+    title = "{TPC} Benchmark {W}",
+    howpublished = "\url{http://www.tpc.org/tpcw/}"
+}
+
+@misc{KASTORS,
+    author =       "Aumage, O. and Broquedis, F. and Brunet, P. and Furmento, N. and Gautier, T. and Thibault, S. and Virouleau, P.",
+    title = "The {K}a{S}t{ORS} {S}uite",
+    howpublished = "\url{http://kastors.gforge.inria.fr/#!index.md}"
+}
+
+@misc{OMPSpec,
+    title = "The {O}pen{MP} {API} specification for parallel programming",
+    howpublished = "\url{http://openmp.org/wp/openmp-specifications/}"
+}
+
+@misc{Parboil,
+    title = "Parboil benchmark {S}uite",
+    howpublished = "\url{http://impact.crhc.illinois.edu/parboil/parboil.aspx}"
+}
+
+@misc{Polybench,
+    title = "Poly{B}ench/{GPU} benchmark {S}uite",
+    howpublished = "\url{http://web.cse.ohio-state.edu/~pouchet/software/polybench/GPU/}"
+}
+
+@misc{Rodinia,
+    title = "Rodinia benchmark {S}uite",
+    howpublished = "\url{https://www.cs.virginia.edu/~skadron/wiki/rodinia/index.php/Rodinia:Accelerating_Compute-Intensive_Applications_with_Accelerators}"
+}
+
+@misc{Lapacke,
+    title = "{LAPACK} ({L}inear {A}lgebra {PACK}age)",
+    howpublished = "\url{http://www.netlib.org/lapack/}"
+}
+
+@misc{Blas,
+    title = "{BLAS} ({B}asic {L}inear {A}lgebra {S}ubprograms)",
+    howpublished = "\url{http://www.netlib.org/blas/}"
+}
+
+@article{STARBENCH,
+    title = "A Benchmark Suite for Evaluating Parallel Programming Models",
+    author = "Michael Anderech and Ben Juurlink and Chi Ching Chi",
+    year ="2011",
+    journal = "Proceedings 24th Workshop on Parallel Systems and Algorithms"
+
+}
