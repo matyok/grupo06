@@ -39,14 +39,15 @@
 
 \section{Execução de experimento do Arco 03}
 
-        O programa necessário para executar o experimento se encontra em /ra137036/grupo06/programas e para a execução verifique que não há nenhum \verb|health_checker.sh| rodando. Para executar o experimento do arco 3 basta executar o seguinte comando:
+        O programa necessário para executar o experimento se encontra em /ra137036/grupo06/programas e para a execução verifique que não há nenhum \verb|health_check.sh| rodando. Para executar o experimento do arco 3 basta executar o seguinte comando:
     
     \begin{spverbatim}
+# sudo ls
 # ./arc3.sh
     \end{spverbatim}
 
-    
-    O script se encarrega de incializar os bancos de dados nas configurações iniciais, chamar o \verb|health_checker.sh| (Script que verifica os status do banco e realiza a promoção automática) e o \verb|killdb.sh| (Script que mata o primário 2 vezes) para a realização dos testes. Os arquivos de saída do rbe são encontrados na pasta /ra137036/arc3/ da máquina cbn7. Vá para o diretório /ra137036/grupo06/resultados e execute o seguinte script:
+  	Aviso: o script demora para executar
+    O script se encarrega de incializar os bancos de dados nas configurações iniciais, chamar o \verb|health_check.sh| (Script que verifica os status do banco e realiza a promoção automática) e o \verb|killdb.sh| (Script que mata o primário 2 vezes) para a realização dos testes. Os arquivos de saída do rbe são encontrados na pasta /ra137036/arc3/ da máquina cbn3. Copie o diretório para a pasta /ra137036/grupo06/resultados e execute o seguinte script:
     
     \begin{spverbatim}
 # ./runAnalyse.sh
@@ -404,7 +405,7 @@ Então as configurações de haproxy foram separadas em dois arquivos, onde um d
 	Para a implementação do detector de falhas bolamos um script em bash que executa uma consulta em loop dos status dos banco de dados. Ao detectar que algum dos bancos de dados caiu ele automaticamente, se for o primário, altera as configurações do haproxy e realiza a promoção do banco de dados secundário para primário e restaura o banco que estava indisponível como secundário. Para a execução do script deve-se estar logado com um usuário pertencente ao grupo e executar o seguinte comando:
 
        \begin{spverbatim}
-# ./health_checker.sh
+# ./health_check.sh
         \end{spverbatim}
 
 \section{Automatização da coleta de dados}
